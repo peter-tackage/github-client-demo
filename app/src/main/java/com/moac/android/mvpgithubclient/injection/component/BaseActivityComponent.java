@@ -9,7 +9,7 @@ import com.moac.android.mvpgithubclient.injection.module.ForActivity;
 import dagger.Component;
 
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
+@Component(dependencies = BaseApplicationComponent.class, modules = ActivityModule.class)
 public interface BaseActivityComponent {
     Activity getActivity();
 

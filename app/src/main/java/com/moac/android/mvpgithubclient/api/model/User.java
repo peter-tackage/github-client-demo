@@ -75,7 +75,7 @@ public abstract class User {
 
     public abstract Integer ownedPrivateRepos();
 
-    public abstract Integer abstractGists();
+    public abstract Integer privateGists();
 
     public abstract Integer diskUsage();
 

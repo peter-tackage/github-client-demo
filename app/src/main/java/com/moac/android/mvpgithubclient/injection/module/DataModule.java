@@ -12,7 +12,7 @@ import dagger.Provides;
  * @author Peter Tackage
  * @since 16/04/15
  */
-@Module
+@Module(includes = GithubApiModule.class)
 public class DataModule {
     @Provides
     @Singleton

@@ -9,10 +9,12 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = ConfigModule.class)
+@Module(includes = {ApplicationModule.class, ConfigModule.class})
 public class ImagesModule {
 
-    @Provides @Singleton Picasso providePicasso(@ForApplication Context context) {
+    @Provides
+    @Singleton
+    Picasso providePicasso(@ForApplication Context context) {
         return Picasso.with(context);
     }
 

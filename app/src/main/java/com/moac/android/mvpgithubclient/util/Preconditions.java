@@ -13,6 +13,13 @@ public final class Preconditions {
         //no instance
     }
 
+    public static <T> T checkNotNull(@Nullable T value, @NonNull String errorMessage) {
+        if (value == null) {
+            throw new IllegalStateException(errorMessage);
+        }
+        return value;
+    }
+
     public static String checkNotNullOrEmpty(@Nullable String value, @NonNull String errorMessage) {
         if (TextUtils.isNullOrEmpty(value)) {
             throw new IllegalStateException(errorMessage);
