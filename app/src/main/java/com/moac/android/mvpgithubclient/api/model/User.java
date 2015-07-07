@@ -8,7 +8,7 @@ import com.moac.android.mvpgithubclient.api.autovalue.AutoGson;
  * @since 04/07/15
  */
 @AutoValue
-@AutoGson
+@AutoGson(autoValueClass = AutoValue_User.class)
 public abstract class User {
 
     public abstract String login();

@@ -1,4 +1,4 @@
-package com.moac.android.mvpgithubclient.api.util;
+package com.moac.android.mvpgithubclient.util;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

@@ -6,6 +6,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.moac.android.mvpgithubclient.api.GithubUserApi;
+import com.moac.android.mvpgithubclient.api.autovalue.AutoGsonTypeAdapter;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -89,13 +90,14 @@ public class GithubApiModule {
     @NonNull
     @Singleton
     Gson provideGson() {
-        return createGson(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        return createGson();
     }
 
     @NonNull
-    private static Gson createGson(FieldNamingPolicy fieldNamingPolicy) {
+    private static Gson createGson() {
         return new GsonBuilder()
-                .setFieldNamingPolicy(fieldNamingPolicy)
+                .registerTypeAdapterFactory(new AutoGsonTypeAdapter())
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
     }
 
