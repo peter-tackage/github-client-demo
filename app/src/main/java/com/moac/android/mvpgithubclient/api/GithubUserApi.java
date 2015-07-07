@@ -4,6 +4,7 @@ import com.moac.android.mvpgithubclient.api.model.User;
 
 import retrofit.http.GET;
 import retrofit.http.Path;
+import rx.Observable;
 
 /**
  * @author Peter Tackage
@@ -12,6 +13,6 @@ import retrofit.http.Path;
 public interface GithubUserApi {
 
     @GET("/users/{user}")
-    User getUser(@Path("user") String username);
+    Observable<User> getUser(@Path("user") String username);
 
 }

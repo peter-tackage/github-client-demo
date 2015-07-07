@@ -35,10 +35,9 @@ import retrofit.converter.GsonConverter;
 public class GithubApiModule {
 
     static final String URL_CONFIG = "GithubApiModule.URL_CONFIG";
-    static final String TOKEN_CONFIG = "GithubApiModule.TOKEN_CONFIG";
-    static final String CACHE_SIZE_CONFIG = "GithubApiModule.CACHE_SIZE_CONFIG";
 
     @Provides
+    @NonNull
     @Singleton
     GithubUserApi provideGithubUserApi(Endpoint endpoint,
                                        Client client,
@@ -54,15 +53,17 @@ public class GithubApiModule {
 
     // TODO Other Github endpoints
 
-    // Private //
+    // Internal //
 
     @Provides
+    @NonNull
     @Singleton
     Endpoint provideEndpoint(@Named(URL_CONFIG) String url) {
         return Endpoints.newFixedEndpoint(url);
     }
 
     @Provides
+    @NonNull
     @Singleton
     OkHttpClient provideApiOkHttpClient(@AppInterceptors List<Interceptor> appInterceptor,
                                         @NetworkInterceptors List<Interceptor> networkInterceptor) {
@@ -71,18 +72,21 @@ public class GithubApiModule {
 
 
     @Provides
+    @NonNull
     @Singleton
     Client provideClient(OkHttpClient okHttpClient) {
         return new OkClient(okHttpClient);
     }
 
     @Provides
+    @NonNull
     @Singleton
     Converter provideConverter(Gson gson) {
         return new GsonConverter(gson);
     }
 
     @Provides
+    @NonNull
     @Singleton
     Gson provideGson() {
         return createGson(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);

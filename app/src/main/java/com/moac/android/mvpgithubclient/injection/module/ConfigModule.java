@@ -1,5 +1,7 @@
 package com.moac.android.mvpgithubclient.injection.module;
 
+import android.support.annotation.NonNull;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -14,6 +16,7 @@ import dagger.Provides;
 public class ConfigModule {
 
     @Provides
+    @NonNull
     @Singleton
     @Named(GithubApiModule.URL_CONFIG)
     public String provideGithubApiModuleUrlConfig() {
