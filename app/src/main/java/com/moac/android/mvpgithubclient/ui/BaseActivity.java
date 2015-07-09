@@ -1,6 +1,7 @@
 package com.moac.android.mvpgithubclient.ui;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
 
 import com.moac.android.mvpgithubclient.injection.component.ComponentHolder;
@@ -15,6 +16,7 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements Compo
     protected T component;
 
     @Override
+    @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initComponent();

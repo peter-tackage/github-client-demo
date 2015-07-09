@@ -32,7 +32,7 @@ import retrofit.converter.GsonConverter;
  * @author Peter Tackage
  * @since 06/07/15
  */
-@Module
+@Module(includes = {ConfigModule.class, InstrumentationModule.class})
 public class GithubApiModule {
 
     static final String URL_CONFIG = "GithubApiModule.URL_CONFIG";

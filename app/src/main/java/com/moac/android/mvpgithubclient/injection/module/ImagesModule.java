@@ -9,7 +9,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {ApplicationModule.class, ConfigModule.class})
+@Module(includes = BaseApplicationModule.class)
 public class ImagesModule {
 
     @Provides

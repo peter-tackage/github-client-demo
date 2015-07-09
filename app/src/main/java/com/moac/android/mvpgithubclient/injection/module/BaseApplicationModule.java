@@ -9,11 +9,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ApplicationModule {
+public class BaseApplicationModule {
 
     private final Application application;
 
-    public ApplicationModule(Application application) {
+    public BaseApplicationModule(Application application) {
         this.application = application;
     }
 

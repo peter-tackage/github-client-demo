@@ -16,7 +16,7 @@ import dagger.Provides;
 public class DataModule {
     @Provides
     @Singleton
-    UserProvider provideUserApi(GithubUserApi githubUserApi) {
+    UserProvider providerUserProvider(GithubUserApi githubUserApi) {
         return new UserProvider(githubUserApi);
     }
 }
