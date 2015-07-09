@@ -10,7 +10,6 @@ import dagger.Component;
 
 @PerActivity
 @Component(dependencies = BaseApplicationComponent.class, modules = BaseActivityModule.class)
-
 public interface BaseActivityComponent {
     Activity getActivity();
 

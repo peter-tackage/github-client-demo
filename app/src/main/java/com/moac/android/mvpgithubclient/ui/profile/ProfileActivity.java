@@ -15,7 +15,7 @@ import static com.moac.android.mvpgithubclient.util.ViewUtils.getActivityRootVie
 
 public class ProfileActivity extends BaseActivity<ProfileComponent> {
 
-//    @Inject
+    @Inject
     ProfilePresenter profilePresenter;
 
     @Override
@@ -35,10 +35,10 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     @Override
     public void initComponent() {
         if (component == null) {
-//            component = DaggerProfileComponent.builder()
-//                    .baseApplicationComponent(((GithubClientApplication) getApplication()).component())
-//                    .baseActivityModule(new BaseActivityModule(this))
-//                    .build();
+            component = DaggerProfileComponent.builder()
+                    .githubClientApplicationComponent(((GithubClientApplication) getApplication()).component())
+                    .baseActivityModule(new BaseActivityModule(this))
+                    .build();
         }
     }
 }

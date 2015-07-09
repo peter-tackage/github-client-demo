@@ -8,11 +8,11 @@ import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenterImp
 import dagger.Module;
 import dagger.Provides;
 
-@PerActivity
-@Module(includes = DataModule.class)
+@Module
 public class PresenterModule {
 
     @Provides
+    @PerActivity
     ProfilePresenter profileProfilePresenter(UserProvider userProvider) {
         return new ProfilePresenterImpl(userProvider);
     }
