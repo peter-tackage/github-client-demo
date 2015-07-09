@@ -8,13 +8,13 @@ import com.google.auto.value.AutoValue;
  */
 @AutoValue
 public abstract class ProfileViewModel {
-    abstract String avatarUrl();
+    public abstract String avatarUrl();
 
-    abstract String userName();
+    public abstract String userName();
 
-    abstract String name();
+    public abstract String name();
 
-    abstract String location();
+    public abstract String location();
 
     public static ProfileViewModel from(String avatarUrl, String username,
                                         String name, String location) {

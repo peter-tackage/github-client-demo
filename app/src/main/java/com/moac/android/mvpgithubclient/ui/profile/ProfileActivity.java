@@ -7,7 +7,7 @@ import com.moac.android.mvpgithubclient.R;
 import com.moac.android.mvpgithubclient.injection.module.BaseActivityModule;
 import com.moac.android.mvpgithubclient.ui.BaseActivity;
 import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenter;
-import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewImpl;
+import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
 
 import javax.inject.Inject;
 
@@ -18,12 +18,16 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     @Inject
     ProfilePresenter profilePresenter;
 
+    @Inject
+    ProfileView profileView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        component.inject(this);
         setContentView(R.layout.activity_profile);
-        // TODO Inject ProfileViewImpl via Factory or assisted injection
-        profilePresenter.onAttachView(new ProfileViewImpl(findViewById(getActivityRootViewId())));
+        profileView.setContentView(findViewById(getActivityRootViewId()));
+        profilePresenter.onAttachView(profileView);
     }
 
     @Override

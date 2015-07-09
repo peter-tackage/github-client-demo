@@ -16,6 +16,7 @@ import rx.android.schedulers.AndroidSchedulers;
 public class ProfilePresenterImpl implements ProfilePresenter {
 
     private final UserProvider userProvider;
+
     private Subscription userSubscription;
 
     public ProfilePresenterImpl(UserProvider userProvider) {
@@ -32,6 +33,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
+                        // TODO Differentiate between error types
                         profileView.showError(e.getMessage());
                     }
 
