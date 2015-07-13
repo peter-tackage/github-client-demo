@@ -6,6 +6,7 @@ import com.moac.android.mvpgithubclient.injection.component.PerActivity;
 import com.moac.android.mvpgithubclient.injection.module.BaseActivityModule;
 import com.moac.android.mvpgithubclient.injection.module.PresenterModule;
 import com.moac.android.mvpgithubclient.injection.module.ViewModule;
+import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractor;
 import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenter;
 import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
 
@@ -24,6 +25,8 @@ public interface ProfileComponent extends BaseActivityComponent {
     ProfilePresenter provideProfilePresenter();
 
     ProfileView provideProfileView();
+
+    UserModelInteractor provideUserModelInteractor();
 
     void inject(ProfileActivity profileActivity);
 

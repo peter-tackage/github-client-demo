@@ -1,13 +1,11 @@
 package com.moac.android.mvpgithubclient.ui.profile.presenter;
 
-import com.moac.android.mvpgithubclient.provider.UserProvider;
 import com.moac.android.mvpgithubclient.ui.core.presenter.ContentObserver;
+import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractor;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.moac.android.mvpgithubclient.ui.profile.model.UserViewModelMapper;
 import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
 
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * @author Peter Tackage
@@ -15,21 +13,18 @@ import rx.android.schedulers.AndroidSchedulers;
  */
 public class ProfilePresenterImpl implements ProfilePresenter {
 
-    private final UserProvider userProvider;
+    private final UserModelInteractor userModelInteractor;
 
     private Subscription userSubscription;
 
-    public ProfilePresenterImpl(UserProvider userProvider) {
-        this.userProvider = userProvider;
+    public ProfilePresenterImpl(UserModelInteractor userModelInteractor) {
+        this.userModelInteractor = userModelInteractor;
     }
 
     @Override
     public void onAttachView(final ProfileView profileView) {
-        userSubscription = userProvider.getUser("peter-tackage")
-                .map(new UserViewModelMapper())
-                .observeOn(AndroidSchedulers.mainThread())
+        userSubscription = userModelInteractor.getProfileViewModel("peter-tackage")
                 .subscribe(new ContentObserver<ProfileViewModel>() {
-
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
