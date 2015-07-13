@@ -25,15 +25,13 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         component.inject(this);
-        setContentView(R.layout.activity_profile);
-        profileView.setContentView(findViewById(getActivityRootViewId()));
-        profilePresenter.onAttachView(profileView);
+        setContent();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        profilePresenter.onDetachView();
+        profilePresenter.onViewDestroyed();
     }
 
     @Override
@@ -44,5 +42,11 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
                     .baseActivityModule(new BaseActivityModule(this))
                     .build();
         }
+    }
+
+    private void setContent() {
+        setContentView(R.layout.activity_profile);
+        profileView.setContentView(findViewById(getActivityRootViewId()));
+        profilePresenter.onViewCreated(profileView);
     }
 }

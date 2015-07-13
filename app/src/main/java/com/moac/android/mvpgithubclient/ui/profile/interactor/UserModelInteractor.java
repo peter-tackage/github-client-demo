@@ -7,6 +7,8 @@ import rx.Observable;
 /**
  * @author Peter Tackage
  * @since 13/07/15
+ *
+ * Interactors supply formatted data to the Presenter on the appropriate thread for visualization.
  */
 public interface UserModelInteractor {
 

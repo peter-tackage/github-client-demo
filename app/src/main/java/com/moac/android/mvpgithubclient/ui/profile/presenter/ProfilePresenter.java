@@ -8,7 +8,7 @@ import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
  */
 public interface ProfilePresenter {
 
-    void onAttachView(ProfileView profileView);
+    void onViewCreated(ProfileView profileView);
 
-    void onDetachView();
+    void onViewDestroyed();
 }
