@@ -38,7 +38,6 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
 
     public void testThrowsOnShowContent_WhenContentViewNotSet() {
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
-
         try {
             profileView.showContent(mock(ProfileViewModel.class));
             fail("IllegalStateException should have been thrown as content view was not set");
@@ -49,7 +48,6 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
 
     public void testThrowsOnShowError_WhenContentViewNotSet() {
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
-
         try {
             profileView.showError("dummy");
             fail("IllegalStateException should have been thrown as content view was not set");
@@ -84,7 +82,6 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
 
     public void testShowContentDoesNotThrow_WhenContentViewSet() {
         final ProfileViewModel profileViewModel = mock(ProfileViewModel.class);
-
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
 
         // Set content view
