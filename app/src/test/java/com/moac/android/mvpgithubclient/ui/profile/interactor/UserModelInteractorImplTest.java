@@ -1,10 +1,9 @@
-package com.moac.android.mvpgithubclient.ui.interactor;
+package com.moac.android.mvpgithubclient.ui.profile.interactor;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.moac.android.mvpgithubclient.api.model.User;
 import com.moac.android.mvpgithubclient.provider.UserProvider;
-import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractorImpl;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 import com.moac.android.mvpgithubclient.ui.profile.model.UserViewModelMapper;
 

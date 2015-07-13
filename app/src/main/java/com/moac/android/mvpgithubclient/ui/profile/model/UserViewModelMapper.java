@@ -12,10 +12,6 @@ import rx.functions.Func1;
  */
 public class UserViewModelMapper implements Func1<User, ProfileViewModel> {
 
-    @Inject
-    public UserViewModelMapper() {
-    }
-
     @Override
     public ProfileViewModel call(User user) {
         return ProfileViewModel.from(user.avatarUrl(), user.login(), user.name(), user.location());

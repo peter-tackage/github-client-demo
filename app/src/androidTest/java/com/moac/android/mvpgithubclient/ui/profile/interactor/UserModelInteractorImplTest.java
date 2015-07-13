@@ -23,7 +23,6 @@ import static org.mockito.Mockito.when;
 @SmallTest
 public class UserModelInteractorImplTest extends PatchedAndroidTestCase {
 
-
     public void testObservedOnMainThread_WhenNoSchedulerProvided() throws Exception {
         UserProvider userProvider = mock(UserProvider.class);
         when(userProvider.getUser(any(String.class))).thenReturn(Observable.<User>empty());

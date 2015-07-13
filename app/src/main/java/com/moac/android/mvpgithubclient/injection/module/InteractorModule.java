@@ -15,8 +15,8 @@ public class InteractorModule {
 
     @Provides
     @PerActivity
-    UserModelInteractor provideUserModelInteractor(UserProvider userProvider, UserViewModelMapper userViewModelMapper) {
-        return new UserModelInteractorImpl(userProvider, userViewModelMapper);
+    UserModelInteractor provideUserModelInteractor(UserProvider userProvider) {
+        return new UserModelInteractorImpl(userProvider);
     }
 
 }

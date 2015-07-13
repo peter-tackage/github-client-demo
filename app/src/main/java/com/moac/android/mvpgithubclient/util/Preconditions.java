@@ -30,7 +30,7 @@ public final class Preconditions {
 
     public static void checkOnMainThread() {
         if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            throw new IllegalStateException("This method must be called from the Android main thread");
+            throw new IllegalStateException("This method must be called from the Android main thread, not: " + Thread.currentThread());
         }
     }
 }

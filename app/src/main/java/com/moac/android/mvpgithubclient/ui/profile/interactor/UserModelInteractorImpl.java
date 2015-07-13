@@ -20,13 +20,14 @@ public class UserModelInteractorImpl implements UserModelInteractor {
     private final UserViewModelMapper userViewModelMapper;
     private final Scheduler observeOn;
 
-    public UserModelInteractorImpl(UserProvider userProvider, UserViewModelMapper userViewModelMapper) {
-        this(userProvider, userViewModelMapper, AndroidSchedulers.mainThread());
+    public UserModelInteractorImpl(UserProvider userProvider) {
+        this(userProvider, new UserViewModelMapper(), AndroidSchedulers.mainThread());
     }
 
-    public UserModelInteractorImpl(UserProvider userProvider,
-                                   UserViewModelMapper userViewModelMapper,
-                                   Scheduler observeOn) {
+    @VisibleForTesting
+    UserModelInteractorImpl(UserProvider userProvider,
+                            UserViewModelMapper userViewModelMapper,
+                            Scheduler observeOn) {
         this.userProvider = userProvider;
         this.userViewModelMapper = userViewModelMapper;
         this.observeOn = observeOn;

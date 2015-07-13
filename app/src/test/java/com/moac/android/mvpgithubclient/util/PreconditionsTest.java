@@ -4,6 +4,9 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import org.junit.Test;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 
