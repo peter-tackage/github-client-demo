@@ -1,13 +1,18 @@
 package com.moac.android.mvpgithubclient.ui.profile.view;
 
+import android.view.View;
+
+import com.moac.android.mvpgithubclient.R;
 import com.moac.android.mvpgithubclient.test.core.PatchedAndroidTestCase;
 import com.moac.android.mvpgithubclient.ui.core.view.ErrorRenderer;
+import com.moac.android.mvpgithubclient.ui.core.view.PicassoImageLoader;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.squareup.picasso.Picasso;
 
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * @author Peter Tackage
@@ -16,16 +21,26 @@ import static org.mockito.Matchers.any;
 public class ProfileViewImplTest extends PatchedAndroidTestCase {
 
     @Mock
-    Picasso picasso;
+    PicassoImageLoader picassoImageLoader;
 
     @Mock
     ErrorRenderer errorRenderer;
 
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        MockitoAnnotations.initMocks(this);
+    }
+
+    private View getView() {
+        return View.inflate(getContext(), R.layout.activity_profile, null);
+    }
+
     public void testThrowsOnShowContent_WhenContentViewNotSet() {
-        ProfileViewImpl profileView = new ProfileViewImpl(picasso, errorRenderer);
+        ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
 
         try {
-            profileView.showContent(any(ProfileViewModel.class));
+            profileView.showContent(mock(ProfileViewModel.class));
             fail("IllegalStateException should have been thrown as content view was not set");
         } catch (IllegalStateException ise) { // expected
         }
@@ -33,17 +48,17 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
     }
 
     public void testThrowsOnShowError_WhenContentViewNotSet() {
-        ProfileViewImpl profileView = new ProfileViewImpl(picasso, errorRenderer);
+        ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
 
         try {
-            profileView.showError(any(String.class));
+            profileView.showError("dummy");
             fail("IllegalStateException should have been thrown as content view was not set");
         } catch (IllegalStateException ise) { // expected
         }
     }
 
     public void testThrowsOnShowLoading_WhenContentViewNotSet() {
-        ProfileViewImpl profileView = new ProfileViewImpl(picasso, errorRenderer);
+        ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
         try {
             profileView.showLoading();
             fail("IllegalStateException should have been thrown as content view was not set");
@@ -51,4 +66,31 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
         }
     }
 
+    public void testErrorRendererShowsShortMsg_WhenShowErrorInvoked() {
+        final String errorMsg = "errorMsg";
+
+        // Inflate the view to allow binding of fields
+        final View view = getView();
+        ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
+
+        // Set content view
+        profileView.setContentView(view);
+
+        // Invoke showError
+        profileView.showError(errorMsg);
+
+        verify(errorRenderer).showShortError(view, errorMsg);
+    }
+
+    public void testShowContentDoesNotThrow_WhenContentViewSet() {
+        final ProfileViewModel profileViewModel = mock(ProfileViewModel.class);
+
+        ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
+
+        // Set content view
+        profileView.setContentView(getView());
+
+        // Invoke showContent
+        profileView.showContent(profileViewModel);
+    }
 }

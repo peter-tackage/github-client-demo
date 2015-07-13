@@ -1,5 +1,6 @@
 package com.moac.android.mvpgithubclient.ui.profile.interactor;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
 import com.moac.android.mvpgithubclient.provider.UserProvider;
@@ -20,21 +21,21 @@ public class UserModelInteractorImpl implements UserModelInteractor {
     private final UserViewModelMapper userViewModelMapper;
     private final Scheduler observeOn;
 
-    public UserModelInteractorImpl(UserProvider userProvider) {
+    public UserModelInteractorImpl(@NonNull UserProvider userProvider) {
         this(userProvider, new UserViewModelMapper(), AndroidSchedulers.mainThread());
     }
 
     @VisibleForTesting
-    UserModelInteractorImpl(UserProvider userProvider,
-                            UserViewModelMapper userViewModelMapper,
-                            Scheduler observeOn) {
+    UserModelInteractorImpl(@NonNull UserProvider userProvider,
+                            @NonNull UserViewModelMapper userViewModelMapper,
+                            @NonNull Scheduler observeOn) {
         this.userProvider = userProvider;
         this.userViewModelMapper = userViewModelMapper;
         this.observeOn = observeOn;
     }
 
     @Override
-    public Observable<ProfileViewModel> getProfileViewModel(String username) {
+    public Observable<ProfileViewModel> getProfileViewModel(@NonNull String username) {
         return userProvider.getUser("peter-tackage")
                 .map(userViewModelMapper)
                 .observeOn(observeOn);

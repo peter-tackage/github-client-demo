@@ -1,5 +1,7 @@
 package com.moac.android.mvpgithubclient.ui.profile.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
 
 /**
@@ -10,7 +12,7 @@ import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
  */
 public interface ProfilePresenter {
 
-    void onViewCreated(ProfileView profileView);
+    void onViewCreated(@NonNull ProfileView profileView);
 
     void onViewDestroyed();
 }

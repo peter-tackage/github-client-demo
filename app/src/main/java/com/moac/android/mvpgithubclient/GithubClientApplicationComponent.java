@@ -5,6 +5,7 @@ import com.moac.android.mvpgithubclient.injection.module.BaseApplicationModule;
 import com.moac.android.mvpgithubclient.injection.module.DataModule;
 import com.moac.android.mvpgithubclient.injection.module.ImagesModule;
 import com.moac.android.mvpgithubclient.provider.UserProvider;
+import com.moac.android.mvpgithubclient.ui.core.view.PicassoImageLoader;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Singleton;
@@ -17,5 +18,5 @@ public interface GithubClientApplicationComponent extends BaseApplicationCompone
 
     UserProvider getUserProvider();
 
-    Picasso getPicasso();
+    PicassoImageLoader getPicassoImageLoader();
 }

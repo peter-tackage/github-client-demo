@@ -1,5 +1,7 @@
 package com.moac.android.mvpgithubclient.ui.profile.model;
 
+import android.support.annotation.NonNull;
+
 import com.google.auto.value.AutoValue;
 
 /**
@@ -8,15 +10,16 @@ import com.google.auto.value.AutoValue;
  */
 @AutoValue
 public abstract class ProfileViewModel {
-    public abstract String avatarUrl();
 
-    public abstract String userName();
+    @NonNull public abstract String avatarUrl();
 
-    public abstract String name();
+    @NonNull public abstract String userName();
 
-    public abstract String location();
+    @NonNull public abstract String name();
 
-    public static ProfileViewModel from(String avatarUrl, String username,
+    @NonNull public abstract String location();
+
+    @NonNull public static ProfileViewModel from(String avatarUrl, String username,
                                         String name, String location) {
         return new AutoValue_ProfileViewModel(avatarUrl, username, name, location);
     }

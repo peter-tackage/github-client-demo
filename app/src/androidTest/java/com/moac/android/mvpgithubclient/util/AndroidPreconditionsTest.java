@@ -17,7 +17,8 @@ public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
     public void testThrows_WhenNonMainThread() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-        Thread nonMainThread = new Thread(new Runnable() {
+        // Create & run new thread
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -27,9 +28,7 @@ public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
                     countDownLatch.countDown();
                 }
             }
-        });
-        // Create & run new thread
-        nonMainThread.start();
+        }).start();
 
         // Give it 5 seconds to countdown or throw
         countDownLatch.await(5, TimeUnit.SECONDS);
@@ -38,8 +37,8 @@ public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
     public void testDoesNotThrow_WhenMainThread() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        mainHandler.post(new Runnable() {
+        // Post to main looper
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
                 AndroidPreconditions.checkOnMainThread();

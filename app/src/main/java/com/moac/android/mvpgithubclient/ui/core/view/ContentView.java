@@ -1,5 +1,6 @@
 package com.moac.android.mvpgithubclient.ui.core.view;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 
 /**
@@ -8,11 +9,11 @@ import android.view.View;
  */
 public interface ContentView<T> {
 
-    void setContentView(View view);
+    void setContentView(@NonNull View view);
 
     void showLoading();
 
-    void showContent(T content);
+    void showContent(@NonNull T content);
 
-    void showError(String msg);
+    void showError(@NonNull String msg);
 }

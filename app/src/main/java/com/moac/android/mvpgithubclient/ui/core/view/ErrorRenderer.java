@@ -1,5 +1,6 @@
 package com.moac.android.mvpgithubclient.ui.core.view;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 
 /**
@@ -7,9 +8,9 @@ import android.view.View;
  * @since 09/07/15
  */
 public interface ErrorRenderer {
-    void showShortError(View anchorView, String msg);
+    void showShortError(@NonNull View anchorView, @NonNull String msg);
 
-    void showLongError(View anchorView, String msg);
+    void showLongError(@NonNull View anchorView, @NonNull String msg);
 
-    void showStickyError(View anchorView, String msg);
+    void showStickyError(@NonNull View anchorView, @NonNull String msg);
 }
