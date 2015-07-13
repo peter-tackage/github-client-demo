@@ -6,7 +6,7 @@ import com.moac.android.mvpgithubclient.api.model.User;
 import com.moac.android.mvpgithubclient.provider.UserProvider;
 import com.moac.android.mvpgithubclient.test.core.PatchedAndroidTestCase;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.moac.android.mvpgithubclient.util.Preconditions;
+import com.moac.android.mvpgithubclient.util.AndroidPreconditions;
 
 import rx.Notification;
 import rx.Observable;
@@ -35,7 +35,7 @@ public class UserModelInteractorImplTest extends PatchedAndroidTestCase {
                 .subscribe(new Action1<Notification<ProfileViewModel>>() {
                     @Override
                     public void call(Notification<ProfileViewModel> profileViewModelNotification) {
-                        Preconditions.checkOnMainThread();
+                        AndroidPreconditions.checkOnMainThread();
                     }
                 });
 

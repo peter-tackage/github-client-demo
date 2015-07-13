@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * @author Peter Tackage
  * @since 13/07/15
  */
-public class PreconditionsAndroidTest extends PatchedAndroidTestCase {
+public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
 
     public void testThrows_WhenNonMainThread() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
@@ -21,7 +21,7 @@ public class PreconditionsAndroidTest extends PatchedAndroidTestCase {
             @Override
             public void run() {
                 try {
-                    Preconditions.checkOnMainThread();
+                    AndroidPreconditions.checkOnMainThread();
                 } catch (IllegalStateException ise) {
                     // Catch expected Exception
                     countDownLatch.countDown();
@@ -42,7 +42,7 @@ public class PreconditionsAndroidTest extends PatchedAndroidTestCase {
         mainHandler.post(new Runnable() {
             @Override
             public void run() {
-                Preconditions.checkOnMainThread();
+                AndroidPreconditions.checkOnMainThread();
                 // Count down if no Exception thrown
                 countDownLatch.countDown();
             }

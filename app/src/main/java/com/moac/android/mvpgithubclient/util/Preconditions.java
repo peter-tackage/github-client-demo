@@ -1,6 +1,5 @@
 package com.moac.android.mvpgithubclient.util;
 
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -29,9 +28,4 @@ public final class Preconditions {
         return value;
     }
 
-    public static void checkOnMainThread() {
-        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            throw new IllegalStateException("This method must be called from the Android main thread, not: " + Thread.currentThread());
-        }
-    }
 }

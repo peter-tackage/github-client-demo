@@ -5,7 +5,7 @@ import android.support.annotation.CallSuper;
 import rx.Observer;
 import timber.log.Timber;
 
-import static com.moac.android.mvpgithubclient.util.Preconditions.checkOnMainThread;
+import static com.moac.android.mvpgithubclient.util.AndroidPreconditions.checkOnMainThread;
 
 /**
  * @author Peter Tackage
