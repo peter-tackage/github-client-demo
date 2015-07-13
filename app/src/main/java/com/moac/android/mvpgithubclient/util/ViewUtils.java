@@ -9,6 +9,7 @@ import android.support.annotation.IdRes;
 public final class ViewUtils {
     private ViewUtils() {
         //no instance
+        throw new AssertionError("No instances allowed");
     }
 
     @IdRes
