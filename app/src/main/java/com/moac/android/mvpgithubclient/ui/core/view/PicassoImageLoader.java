@@ -20,7 +20,7 @@ public class PicassoImageLoader {
 
     private final Picasso picasso;
 
-    public PicassoImageLoader(Picasso picasso) {
+    public PicassoImageLoader(@NonNull Picasso picasso) {
         this.picasso = picasso;
     }
 
