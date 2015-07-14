@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.CallSuper;
 import android.support.test.InstrumentationRegistry;
 
+import org.junit.Before;
+
 /**
  * @author Peter Tackage
  * @since 13/07/15
@@ -12,7 +14,7 @@ import android.support.test.InstrumentationRegistry;
  * https://github.com/crittercism/dexmaker/issues/18 and
  * https://github.com/crittercism/dexmaker/issues/12
  */
-public abstract class PatchedJUnit4TestCase {
+public abstract class PatchedDexmakerTestCase {
 
     @CallSuper
     public void setUp() throws Exception {

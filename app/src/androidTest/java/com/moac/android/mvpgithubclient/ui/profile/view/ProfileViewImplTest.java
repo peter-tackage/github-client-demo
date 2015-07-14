@@ -5,7 +5,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
 
 import com.moac.android.mvpgithubclient.R;
-import com.moac.android.mvpgithubclient.test.core.PatchedJUnit4TestCase;
+import com.moac.android.mvpgithubclient.test.core.PatchedDexmakerTestCase;
 import com.moac.android.mvpgithubclient.ui.core.view.ErrorRenderer;
 import com.moac.android.mvpgithubclient.ui.core.view.PicassoImageLoader;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verify;
  */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
-public class ProfileViewImplTest extends PatchedJUnit4TestCase {
+public class ProfileViewImplTest extends PatchedDexmakerTestCase {
 
     @Mock
     PicassoImageLoader picassoImageLoader;

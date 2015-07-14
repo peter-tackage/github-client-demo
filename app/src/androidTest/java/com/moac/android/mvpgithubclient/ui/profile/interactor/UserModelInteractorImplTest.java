@@ -5,7 +5,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import com.moac.android.mvpgithubclient.api.model.User;
 import com.moac.android.mvpgithubclient.provider.UserProvider;
-import com.moac.android.mvpgithubclient.test.core.PatchedJUnit4TestCase;
+import com.moac.android.mvpgithubclient.test.core.PatchedDexmakerTestCase;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 import com.moac.android.mvpgithubclient.util.AndroidPreconditions;
 
@@ -23,12 +23,12 @@ import static org.mockito.Mockito.when;
 /**
  * @author Peter Tackage
  * @since 13/07/15
- *
+ * <p/>
  * Android dependent test for UserModelInteractorImpl
  */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
-public class UserModelInteractorImplTest extends PatchedJUnit4TestCase {
+public class UserModelInteractorImplTest extends PatchedDexmakerTestCase {
 
     @Test
     public void testObservedOnMainThread_WhenNoSchedulerProvided() throws Exception {

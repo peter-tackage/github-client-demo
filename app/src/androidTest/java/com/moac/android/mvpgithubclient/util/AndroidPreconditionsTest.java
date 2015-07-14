@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
  * @author Peter Tackage
  * @since 13/07/15
  * <p/>
- * This doesn't need to inherit from PatchedJUnit4TestCase as it doesn't use Dexmaker or require
- * a Context.
+ * This doesn't need to subclass {@link com.moac.android.mvpgithubclient.test.core.PatchedDexmakerTestCase}
+ * as it doesn't use Dexmaker or require a Context.
  */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
