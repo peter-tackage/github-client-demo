@@ -15,7 +15,7 @@ of general best practices.
 The MVP pattern I have used is arranged as follows:
 
 * ```Presenter``` - retrieves ```ViewModel``` content via ```Interactor``` and supplies it to ```ViewContract```.
-* ```ViewContact``` - manipulates Android ```View``` to display ```ViewModel``` content.
+* ```ViewContract``` - manipulates Android ```View``` to display ```ViewModel``` content.
 * ```Interactor``` - retrieves specific ```ViewModel``` content from data ```Provider```.
 * ```ViewModel``` - mapped model data, typically specific to a ```ViewContract```.
 
