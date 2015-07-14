@@ -19,7 +19,7 @@ import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
  * @author Peter Tackage
  * @since 08/07/15
  */
-public class ProfileViewImpl implements ProfileView {
+public class ProfileViewContractImpl implements ProfileViewContract {
 
     @NonNull private final PicassoImageLoader picasso;
     @NonNull private final ErrorRenderer errorRenderer;
@@ -30,8 +30,8 @@ public class ProfileViewImpl implements ProfileView {
     @Bind(R.id.textView_username) TextView usernameTextView;
     @Bind(R.id.textView_location) TextView locationTextView;
 
-    public ProfileViewImpl(@NonNull PicassoImageLoader picassoImageLoader,
-                           @NonNull ErrorRenderer errorRenderer) {
+    public ProfileViewContractImpl(@NonNull PicassoImageLoader picassoImageLoader,
+                                   @NonNull ErrorRenderer errorRenderer) {
         checkNotNull(picassoImageLoader, "Parameter picassoImageLoader cannot be null.");
         checkNotNull(errorRenderer, "Parameter errorRenderer cannot be null.");
 

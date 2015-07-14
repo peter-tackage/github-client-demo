@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.moac.android.mvpgithubclient.ui.core.presenter.ContentObserver;
 import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractor;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
+import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
 
 import rx.Subscription;
 
@@ -27,7 +27,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     }
 
     @Override
-    public void onViewCreated(@NonNull final ProfileView profileView) {
+    public void onViewCreated(@NonNull final ProfileViewContract profileView) {
         userSubscription = userModelInteractor.getProfileViewModel("peter-tackage")
                 .subscribe(new ContentObserver<ProfileViewModel>() {
                     @Override

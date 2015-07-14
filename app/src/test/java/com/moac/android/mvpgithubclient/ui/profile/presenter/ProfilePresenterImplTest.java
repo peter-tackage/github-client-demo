@@ -4,7 +4,7 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractor;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
+import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
 import com.moac.android.mvpgithubclient.util.AndroidPreconditions;
 
 import org.junit.After;
@@ -37,7 +37,7 @@ public class ProfilePresenterImplTest {
     UserModelInteractor userModelInteractor;
 
     @Mock
-    ProfileView profileView;
+    ProfileViewContract profileView;
 
     private ProfilePresenterImpl profilePresenter;
 

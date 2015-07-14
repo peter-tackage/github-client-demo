@@ -7,7 +7,7 @@ import android.view.View;
  * @author Peter Tackage
  * @since 08/07/15
  */
-public interface ContentView<T> {
+public interface ContentViewContract<T> {
 
     void setContentView(@NonNull View view);
 

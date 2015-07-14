@@ -7,7 +7,7 @@ import com.moac.android.mvpgithubclient.R;
 import com.moac.android.mvpgithubclient.injection.module.BaseActivityModule;
 import com.moac.android.mvpgithubclient.ui.BaseActivity;
 import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenter;
-import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
+import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
 
 import javax.inject.Inject;
 
@@ -19,7 +19,7 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     ProfilePresenter profilePresenter;
 
     @Inject
-    ProfileView profileView;
+    ProfileViewContract profileView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
