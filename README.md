@@ -26,7 +26,7 @@ using a variety of testing libraries, depending on the needs of the test. These 
 
 * Mockito - for general mocking behavior
 * PowerMock - an extension of Mockito used for more advanced mocking, such as statics, in this case to no-op the ```AndroidPrecondition``` checks.
-* Dexmaker - for on-device mocking of classes. It generates dexed classes at runtime.
+* Dexmaker - for on-device mocking of classes in instrumentation tests. It generates dexed classes at runtime.
 
 The Unit Tests are generally run via ```@RunWith(MockitoJUnitRunner.class)```. Its usage is optional as its main function
 is to initialize the mocked class fields, something that be done directly via ```MockitoAnnotations.initMocks(Object)```.
@@ -36,8 +36,9 @@ In cases where PowerMock is required, those tests are run via ```@RunWith(PowerM
 
 The Android Instrumentation Tests are generally run via the new ```@RunWith(AndroidJUnit4.class)```. If the test
  uses mocking (via Mockito with Dexmaker) they subclass an abstract parent class ```PatchedDexmakerTestCase.java``` that has
-a workaround for a long standing known Dexmaker issue. Note that there's no need to subclass ```AndroidTestCase``` anymore.
-PowerMock does not work with DexMaker according to this source http://stackoverflow.com/a/27956309/937783, there's an
+a workaround for a long standing known Dexmaker issue. Importantly there's no need to subclass ```AndroidTestCase``` anymore.
+
+Note: PowerMock does not work together with DexMaker according to this source http://stackoverflow.com/a/27956309/937783, there's an
 issue (without any activity) that reports that: https://github.com/crittercism/dexmaker/issues/3.
 
 Presenter and Model tests should be Unit Tests, as they should not contain Android dependencies. View and
