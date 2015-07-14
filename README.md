@@ -10,16 +10,6 @@ including many libraries and techniques that are arguably over-engineered for a 
 more commonplace in larger scale apps. Hopefully, this makes the app more useful as a demonstration
 of general best practices.
 
-##About Thread Boundaries
-In the current implementation the Presenter and the View operate entirely on the main thread.
-The Interactor is responsible for supplying data to the Presenter on the main Android thread.
-
-This may require some rework, as it pushes Android dependencies into the Interactor, hence UserModelInteractorImpl
- has two constructors to providing explicit Scheduling control for testing purposes. This is not ideal,
- as I would prefer only the View implementations to have Android dependencies.
-
-I imagine that the optimal solution will be found once the app becomes more complex.
-
 ##Testing
 
 Testing is done using both "Unit Tests" and "Android Instrumentation Tests". These tests are executed
@@ -52,6 +42,16 @@ Interactor tests, these are a mixture between Android Instrumentation tests and 
 AssertJ is used for test condition verification. It has a nice fluent API, that mostly goes unused in this simple app.
 
 TODO Espresso
+
+##About Thread Boundaries
+In the current implementation the Presenter and the View operate entirely on the main thread.
+The Interactor is responsible for supplying data to the Presenter on the main Android thread.
+
+This may require some rework, as it pushes Android dependencies into the Interactor, hence UserModelInteractorImpl
+ has two constructors to providing explicit Scheduling control for testing purposes. This is not ideal,
+ as I would prefer only the View implementations to have Android dependencies.
+
+I imagine that the optimal solution will be found once the app becomes more complex.
 
 ##List of references
 In no particular order, here's some of the pages I referred to when building this.
