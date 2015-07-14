@@ -57,28 +57,28 @@ TODO Espresso
 In no particular order, here's some of the pages I referred to when building this.
 
 ###MVP
-http://hannesdorfmann.com/android/mosby/
-http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/
-http://antonioleiva.com/mvp-android/
-https://github.com/antoniolg/androidmvp
-https://github.com/pedrovgs/EffectiveAndroidUI/
-https://github.com/LiveTyping/u2020-mvp
-http://blog.bradcampbell.nz/mvp-presenters-that-survive-configuration-changes-part-2/
-http://www.slideshare.net/ChristianPanadero/my-way-to-clean-android-v2
-http://mattlogan.me/decoupling-the-presenter
-https://corner.squareup.com/2014/01/mortar-and-flow.html
+* http://hannesdorfmann.com/android/mosby/
+* http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/
+* http://antonioleiva.com/mvp-android/
+* https://github.com/antoniolg/androidmvp
+* https://github.com/pedrovgs/EffectiveAndroidUI/
+* https://github.com/LiveTyping/u2020-mvp
+* http://blog.bradcampbell.nz/mvp-presenters-that-survive-configuration-changes-part-2/
+* http://www.slideshare.net/ChristianPanadero/my-way-to-clean-android-v2
+* http://mattlogan.me/decoupling-the-presenter
+* https://corner.squareup.com/2014/01/mortar-and-flow.html
 
 ###Testing
-https://code.google.com/p/android-test-kit/wiki/AndroidJUnitRunnerUserGuide
-http://www.mdswanson.com/blog/2014/02/24/integration-testing-rest-apis-for-android.html
-https://github.com/commonsguy/cw-omnibus/tree/master/Testing/JUnit4
-https://code.google.com/p/powermock/
-https://github.com/crittercism/dexmaker
-https://github.com/mockito/mockito
+* https://code.google.com/p/android-test-kit/wiki/AndroidJUnitRunnerUserGuide
+* http://www.mdswanson.com/blog/2014/02/24/integration-testing-rest-apis-for-android.html
+* https://github.com/commonsguy/cw-omnibus/tree/master/Testing/JUnit4
+* https://code.google.com/p/powermock/
+* https://github.com/crittercism/dexmaker
+* https://github.com/mockito/mockito
 
 ###Other
-http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/
-https://gist.github.com/JakeWharton/0d67d01badcee0ae7bc9
+* http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/
+* https://gist.github.com/JakeWharton/0d67d01badcee0ae7bc9
 
 License
 -------
