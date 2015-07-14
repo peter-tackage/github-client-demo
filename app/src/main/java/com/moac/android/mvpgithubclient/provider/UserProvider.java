@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.moac.android.mvpgithubclient.api.GithubUserApi;
 import com.moac.android.mvpgithubclient.api.model.User;
+import com.moac.android.mvpgithubclient.util.Preconditions;
 
 import rx.Observable;
 
@@ -20,6 +21,8 @@ public class UserProvider {
 
     @NonNull
     public Observable<User> getUser(@NonNull String username) {
+        Preconditions.checkNotNullOrEmpty(username, "Parameter username cannot be null or empty.");
+
         return githubUserApi.getUser(username);
     }
 }
