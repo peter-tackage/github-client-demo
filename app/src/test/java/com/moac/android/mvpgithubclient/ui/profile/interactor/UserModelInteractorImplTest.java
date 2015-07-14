@@ -12,11 +12,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -27,7 +28,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * @since 06/07/15
  */
 @SmallTest
-@RunWith(PowerMockRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class UserModelInteractorImplTest {
 
     @Mock
@@ -49,13 +50,21 @@ public class UserModelInteractorImplTest {
     }
 
     @Test
+    public void test_checkPreconditions() {
+        assertThat(userProvider).isNotNull();
+        assertThat(userViewModelMapper).isNotNull();
+        assertThat(userModelInteractor).isNotNull();
+    }
+
+    @Test
     public void testMapperIsInvoked_WhenSubscribed() {
-        when(userProvider.getUser(any(String.class))).thenReturn(Observable.just(mock(User.class)));
+        User user = mock(User.class);
+        when(userProvider.getUser(any(String.class))).thenReturn(Observable.just(user));
         when(userViewModelMapper.call(any(User.class))).thenReturn(mock(ProfileViewModel.class));
 
-        userModelInteractor.getProfileViewModel(any(String.class)).subscribe();
+        userModelInteractor.getProfileViewModel("dummy").subscribe();
 
-        verify(userViewModelMapper.call(any(User.class)));
+        verify(userViewModelMapper).call(user);
     }
 
 }

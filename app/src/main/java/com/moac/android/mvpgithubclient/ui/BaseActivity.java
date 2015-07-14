@@ -24,6 +24,6 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements Compo
 
     @Override
     public final T component() {
-        return Preconditions.checkNotNull(component, "Activity Component has not been initialized");
+        return Preconditions.checkNotNull(component, "Activity Component has not been initialized.");
     }
 }

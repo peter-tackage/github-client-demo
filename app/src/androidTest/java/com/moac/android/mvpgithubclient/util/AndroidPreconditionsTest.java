@@ -2,8 +2,11 @@ package com.moac.android.mvpgithubclient.util;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.test.runner.AndroidJUnit4;
+import android.test.suitebuilder.annotation.SmallTest;
 
-import com.moac.android.mvpgithubclient.test.core.PatchedAndroidTestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -11,9 +14,15 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Peter Tackage
  * @since 13/07/15
+ * <p/>
+ * This doesn't need to inherit from PatchedJUnit4TestCase as it doesn't use Dexmaker or require
+ * a Context.
  */
-public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
+@SmallTest
+@RunWith(AndroidJUnit4.class)
+public class AndroidPreconditionsTest {
 
+    @Test
     public void testThrows_WhenNonMainThread() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -34,6 +43,7 @@ public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
         countDownLatch.await(5, TimeUnit.SECONDS);
     }
 
+    @Test
     public void testDoesNotThrow_WhenMainThread() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -48,6 +58,14 @@ public class AndroidPreconditionsTest extends PatchedAndroidTestCase {
         });
         // Give it 5 seconds to countdown or throw
         countDownLatch.await(5, TimeUnit.SECONDS);
+
+        /**
+         * This could have been performed using -
+         *
+         *  InstrumentationRegistry.getInstrumentation().runOnMainSync(
+         *      new Runnable() { public void run() { AndroidPreconditions.checkOnMainThread(); } });
+         *
+         */
     }
 
 }

@@ -9,6 +9,8 @@ import com.moac.android.mvpgithubclient.ui.profile.view.ProfileView;
 
 import rx.Subscription;
 
+import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
+
 /**
  * @author Peter Tackage
  * @since 07/07/15
@@ -20,6 +22,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     private Subscription userSubscription;
 
     public ProfilePresenterImpl(@NonNull UserModelInteractor userModelInteractor) {
+        checkNotNull(userModelInteractor, "Parameter userModelInteractor cannot be null.");
         this.userModelInteractor = userModelInteractor;
     }
 

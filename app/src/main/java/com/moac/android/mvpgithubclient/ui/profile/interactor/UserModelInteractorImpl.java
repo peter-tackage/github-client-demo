@@ -11,6 +11,8 @@ import rx.Observable;
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 
+import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
+
 /**
  * @author Peter Tackage
  * @since 13/07/15
@@ -29,6 +31,11 @@ public class UserModelInteractorImpl implements UserModelInteractor {
     UserModelInteractorImpl(@NonNull UserProvider userProvider,
                             @NonNull UserViewModelMapper userViewModelMapper,
                             @NonNull Scheduler observeOn) {
+
+        checkNotNull(userProvider, "Parameter userModelInteractor cannot be null.");
+        checkNotNull(userViewModelMapper, "Parameter userViewModelMapper cannot be null.");
+        checkNotNull(observeOn, "Parameter observeOn cannot be null.");
+
         this.userProvider = userProvider;
         this.userViewModelMapper = userViewModelMapper;
         this.observeOn = observeOn;

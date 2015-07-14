@@ -21,6 +21,6 @@ public abstract class BaseApplication<T> extends Application implements Componen
 
     @Override
     public final T component() {
-        return Preconditions.checkNotNull(component, "Application Component has not been initialized");
+        return Preconditions.checkNotNull(component, "Application Component has not been initialized.");
     }
 }

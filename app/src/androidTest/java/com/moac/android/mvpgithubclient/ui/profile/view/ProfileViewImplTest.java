@@ -1,16 +1,23 @@
 package com.moac.android.mvpgithubclient.ui.profile.view;
 
+import android.support.test.runner.AndroidJUnit4;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
 
 import com.moac.android.mvpgithubclient.R;
-import com.moac.android.mvpgithubclient.test.core.PatchedAndroidTestCase;
+import com.moac.android.mvpgithubclient.test.core.PatchedJUnit4TestCase;
 import com.moac.android.mvpgithubclient.ui.core.view.ErrorRenderer;
 import com.moac.android.mvpgithubclient.ui.core.view.PicassoImageLoader;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Fail.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -18,7 +25,9 @@ import static org.mockito.Mockito.verify;
  * @author Peter Tackage
  * @since 13/07/15
  */
-public class ProfileViewImplTest extends PatchedAndroidTestCase {
+@SmallTest
+@RunWith(AndroidJUnit4.class)
+public class ProfileViewImplTest extends PatchedJUnit4TestCase {
 
     @Mock
     PicassoImageLoader picassoImageLoader;
@@ -26,16 +35,30 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
     @Mock
     ErrorRenderer errorRenderer;
 
-    @Override
+    @Before
     public void setUp() throws Exception {
         super.setUp();
         MockitoAnnotations.initMocks(this);
     }
 
-    private View getView() {
-        return View.inflate(getContext(), R.layout.activity_profile, null);
+    @Test
+    public void testNothing() {
     }
 
+    /**
+     * Defines the layout used by View implementation.
+     */
+    private View getView() {
+        return View.inflate(getTargetContext(), R.layout.activity_profile, null);
+    }
+
+    @Test
+    public void test_checkPreconditions() {
+        assertThat(picassoImageLoader).isNotNull();
+        assertThat(errorRenderer).isNotNull();
+    }
+
+    @Test
     public void testThrowsOnShowContent_WhenContentViewNotSet() {
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
         try {
@@ -46,6 +69,7 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
 
     }
 
+    @Test
     public void testThrowsOnShowError_WhenContentViewNotSet() {
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
         try {
@@ -55,6 +79,7 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
         }
     }
 
+    @Test
     public void testThrowsOnShowLoading_WhenContentViewNotSet() {
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);
         try {
@@ -64,6 +89,7 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
         }
     }
 
+    @Test
     public void testErrorRendererShowsShortMsg_WhenShowErrorInvoked() {
         final String errorMsg = "errorMsg";
 
@@ -80,6 +106,7 @@ public class ProfileViewImplTest extends PatchedAndroidTestCase {
         verify(errorRenderer).showShortError(view, errorMsg);
     }
 
+    @Test
     public void testShowContentDoesNotThrow_WhenContentViewSet() {
         final ProfileViewModel profileViewModel = mock(ProfileViewModel.class);
         ProfileViewImpl profileView = new ProfileViewImpl(picassoImageLoader, errorRenderer);

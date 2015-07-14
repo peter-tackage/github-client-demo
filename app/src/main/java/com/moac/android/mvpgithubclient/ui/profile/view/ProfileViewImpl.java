@@ -9,10 +9,11 @@ import com.moac.android.mvpgithubclient.R;
 import com.moac.android.mvpgithubclient.ui.core.view.ErrorRenderer;
 import com.moac.android.mvpgithubclient.ui.core.view.PicassoImageLoader;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.moac.android.mvpgithubclient.util.Preconditions;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
 
 /**
  * @author Peter Tackage
@@ -29,15 +30,18 @@ public class ProfileViewImpl implements ProfileView {
     @Bind(R.id.textView_username) TextView usernameTextView;
     @Bind(R.id.textView_location) TextView locationTextView;
 
-    public ProfileViewImpl(@NonNull PicassoImageLoader picasso,
+    public ProfileViewImpl(@NonNull PicassoImageLoader picassoImageLoader,
                            @NonNull ErrorRenderer errorRenderer) {
-        this.picasso = picasso;
+        checkNotNull(picassoImageLoader, "Parameter picassoImageLoader cannot be null.");
+        checkNotNull(errorRenderer, "Parameter errorRenderer cannot be null.");
+
+        this.picasso = picassoImageLoader;
         this.errorRenderer = errorRenderer;
     }
 
     @Override
     public void setContentView(@NonNull View contentView) {
-        Preconditions.checkNotNull(contentView, "Content View cannot be null");
+        checkNotNull(contentView, "Parameter contentView cannot be null.");
         this.contentView = contentView;
         ButterKnife.bind(this, contentView);
     }
@@ -49,7 +53,10 @@ public class ProfileViewImpl implements ProfileView {
 
     @Override
     public void showContent(@NonNull ProfileViewModel profileViewModel) {
+        checkNotNull(profileViewModel, "Parameter profileViewModel cannot be null.");
         checkContentViewIsSet();
+
+        // Populate the view
         picasso.load(profileViewModel.avatarUrl(), avatarImageView);
         nameTextView.setText(profileViewModel.name());
         usernameTextView.setText(profileViewModel.userName());
@@ -59,11 +66,13 @@ public class ProfileViewImpl implements ProfileView {
     @Override
     public void showError(@NonNull String msg) {
         checkContentViewIsSet();
+
+        // Display error message
         errorRenderer.showShortError(contentView, msg);
     }
 
     private void checkContentViewIsSet() {
-        Preconditions.checkNotNull(contentView, "Content view has not been set");
+        checkNotNull(contentView, "Content view has not been set.");
     }
 
 }
