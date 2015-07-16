@@ -10,7 +10,7 @@ public final class TextUtils {
 
     private TextUtils() {
         //no instance
-        throw new AssertionError("No instances allowed");
+        throw new AssertionError("No instances allowed.");
     }
 
     public static boolean isNullOrEmpty(@Nullable String string) {

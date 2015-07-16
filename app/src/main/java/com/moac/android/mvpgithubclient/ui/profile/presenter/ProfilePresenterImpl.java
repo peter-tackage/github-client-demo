@@ -3,7 +3,7 @@ package com.moac.android.mvpgithubclient.ui.profile.presenter;
 import android.support.annotation.NonNull;
 
 import com.moac.android.mvpgithubclient.ui.core.presenter.ContentObserver;
-import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractor;
+import com.moac.android.mvpgithubclient.ui.profile.interactor.GetUserProfile;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
 
@@ -17,18 +17,18 @@ import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
  */
 public class ProfilePresenterImpl implements ProfilePresenter {
 
-    @NonNull private final UserModelInteractor userModelInteractor;
+    @NonNull private final GetUserProfile getUserProfile;
 
     private Subscription userSubscription;
 
-    public ProfilePresenterImpl(@NonNull UserModelInteractor userModelInteractor) {
-        checkNotNull(userModelInteractor, "Parameter userModelInteractor cannot be null.");
-        this.userModelInteractor = userModelInteractor;
+    public ProfilePresenterImpl(@NonNull GetUserProfile getUserProfile) {
+        checkNotNull(getUserProfile, "Parameter userModelInteractor cannot be null.");
+        this.getUserProfile = getUserProfile;
     }
 
     @Override
     public void onViewCreated(@NonNull final ProfileViewContract profileView) {
-        userSubscription = userModelInteractor.getProfileViewModel("peter-tackage")
+        userSubscription = getUserProfile.call("peter-tackage")
                 .subscribe(new ContentObserver<ProfileViewModel>() {
                     @Override
                     public void onError(Throwable e) {

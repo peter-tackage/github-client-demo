@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.moac.android.mvpgithubclient.api.GithubUserApi;
+import com.moac.android.mvpgithubclient.api.GithubApi;
 import com.moac.android.mvpgithubclient.api.autovalue.AutoGsonTypeAdapter;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
@@ -40,19 +40,17 @@ public class GithubApiModule {
     @Provides
     @NonNull
     @Singleton
-    GithubUserApi provideGithubUserApi(Endpoint endpoint,
-                                       Client client,
-                                       Converter converter) {
+    GithubApi provideGithubSearchApi(Endpoint endpoint,
+                                     Client client,
+                                     Converter converter) {
         return new RestAdapter.Builder()
                 .setEndpoint(endpoint)
                 .setClient(client)
                 .setConverter(converter)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build()
-                .create(GithubUserApi.class);
+                .create(GithubApi.class);
     }
-
-    // TODO Other Github endpoints
 
     // Internal //
 

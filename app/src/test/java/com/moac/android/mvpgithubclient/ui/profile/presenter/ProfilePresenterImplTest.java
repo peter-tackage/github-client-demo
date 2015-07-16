@@ -2,7 +2,7 @@ package com.moac.android.mvpgithubclient.ui.profile.presenter;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.moac.android.mvpgithubclient.ui.profile.interactor.UserModelInteractor;
+import com.moac.android.mvpgithubclient.ui.profile.interactor.GetUserProfile;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
 import com.moac.android.mvpgithubclient.util.AndroidPreconditions;
@@ -34,7 +34,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 public class ProfilePresenterImplTest {
 
     @Mock
-    UserModelInteractor userModelInteractor;
+    GetUserProfile getUserProfile;
 
     @Mock
     ProfileViewContract profileView;

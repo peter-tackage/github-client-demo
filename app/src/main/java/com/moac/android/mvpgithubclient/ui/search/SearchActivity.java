@@ -1,4 +1,4 @@
-package com.moac.android.mvpgithubclient.ui.profile;
+package com.moac.android.mvpgithubclient.ui.search;
 
 import android.os.Bundle;
 
@@ -6,20 +6,20 @@ import com.moac.android.mvpgithubclient.GithubClientApplication;
 import com.moac.android.mvpgithubclient.R;
 import com.moac.android.mvpgithubclient.injection.module.BaseActivityModule;
 import com.moac.android.mvpgithubclient.ui.BaseActivity;
-import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenter;
-import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
+import com.moac.android.mvpgithubclient.ui.search.presenter.SearchResultPresenter;
+import com.moac.android.mvpgithubclient.ui.search.view.SearchResultViewContract;
 
 import javax.inject.Inject;
 
 import static com.moac.android.mvpgithubclient.util.ViewUtils.getActivityRootViewId;
 
-public class ProfileActivity extends BaseActivity<ProfileComponent> {
+public class SearchActivity extends BaseActivity<SearchComponent> {
 
     @Inject
-    ProfilePresenter profilePresenter;
+    SearchResultPresenter searchResultPresenter;
 
     @Inject
-    ProfileViewContract profileViewContract;
+    SearchResultViewContract searchResultView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,15 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        profilePresenter.onViewDestroyed();
+        searchResultPresenter.onViewDestroyed();
+        searchResultPresenter = null;
+        searchResultView = null;
     }
 
     @Override
     public void initComponent() {
         if (component == null) {
-            component = DaggerProfileComponent.builder()
+            component = DaggerSearchComponent.builder()
                     .githubClientApplicationComponent(((GithubClientApplication) getApplication()).component())
                     .baseActivityModule(new BaseActivityModule(this))
                     .build();
@@ -45,8 +47,8 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     }
 
     private void setContent() {
-        setContentView(R.layout.activity_profile);
-        profileViewContract.setContentView(findViewById(getActivityRootViewId()));
-        profilePresenter.onViewCreated(profileViewContract);
+        setContentView(R.layout.activity_search);
+        searchResultView.setContentView(findViewById(getActivityRootViewId()));
+        searchResultPresenter.onViewCreated(searchResultView);
     }
 }

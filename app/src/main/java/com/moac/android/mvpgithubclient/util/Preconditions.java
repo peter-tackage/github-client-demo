@@ -11,7 +11,7 @@ public final class Preconditions {
 
     private Preconditions() {
         //no instance
-        throw new AssertionError("No instances allowed");
+        throw new AssertionError("No instances allowed.");
     }
 
     public static <T> T checkNotNull(@Nullable T value, @NonNull String errorMessage) {

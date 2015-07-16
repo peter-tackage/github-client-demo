@@ -19,6 +19,8 @@ public class ImagesModule {
         return new PicassoImageLoader(picasso);
     }
 
+    // Internal
+
     @Provides
     @Singleton
     Picasso providePicasso(@ForApplication Context context) {

@@ -37,11 +37,11 @@ public class UserModelInteractorImplTest {
     @Mock
     UserViewModelMapper userViewModelMapper;
 
-    private UserModelInteractorImpl userModelInteractor;
+    private GetUserByNameInteractor userModelInteractor;
 
     @Before
     public void before() {
-        userModelInteractor = new UserModelInteractorImpl(userProvider, userViewModelMapper, Schedulers.immediate());
+        userModelInteractor = new GetUserByNameInteractor(userProvider, userViewModelMapper, Schedulers.immediate());
     }
 
     @After
@@ -62,7 +62,7 @@ public class UserModelInteractorImplTest {
         when(userProvider.getUser(any(String.class))).thenReturn(Observable.just(user));
         when(userViewModelMapper.call(any(User.class))).thenReturn(mock(ProfileViewModel.class));
 
-        userModelInteractor.getProfileViewModel("dummy").subscribe();
+        userModelInteractor.call("dummy").subscribe();
 
         verify(userViewModelMapper).call(user);
     }

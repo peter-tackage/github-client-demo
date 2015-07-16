@@ -17,18 +17,18 @@ import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
  * @author Peter Tackage
  * @since 13/07/15
  */
-public class UserModelInteractorImpl implements UserModelInteractor {
+public class GetUserByNameInteractor implements GetUserProfile {
 
-    private final UserProvider userProvider;
-    private final UserViewModelMapper userViewModelMapper;
-    private final Scheduler observeOn;
+    @NonNull private final UserProvider userProvider;
+    @NonNull private final UserViewModelMapper userViewModelMapper;
+    @NonNull private final Scheduler observeOn;
 
-    public UserModelInteractorImpl(@NonNull UserProvider userProvider) {
+    public GetUserByNameInteractor(@NonNull UserProvider userProvider) {
         this(userProvider, new UserViewModelMapper(), AndroidSchedulers.mainThread());
     }
 
     @VisibleForTesting
-    UserModelInteractorImpl(@NonNull UserProvider userProvider,
+    GetUserByNameInteractor(@NonNull UserProvider userProvider,
                             @NonNull UserViewModelMapper userViewModelMapper,
                             @NonNull Scheduler observeOn) {
 
@@ -42,8 +42,9 @@ public class UserModelInteractorImpl implements UserModelInteractor {
     }
 
     @Override
-    public Observable<ProfileViewModel> getProfileViewModel(@NonNull String username) {
-        return userProvider.getUser("peter-tackage")
+    @NonNull
+    public Observable<ProfileViewModel> call(@NonNull String username) {
+        return userProvider.getUser(username)
                 .map(userViewModelMapper)
                 .observeOn(observeOn);
     }

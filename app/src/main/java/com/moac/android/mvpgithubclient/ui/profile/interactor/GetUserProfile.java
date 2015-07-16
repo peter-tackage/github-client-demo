@@ -11,8 +11,11 @@ import rx.Observable;
  * @since 13/07/15
  *
  * Interactors supply formatted data to the Presenter on the appropriate thread for visualization.
+ *
+ * The functional naming convention is used to abstract the result from the data source
  */
-public interface UserModelInteractor {
+public interface GetUserProfile {
 
-    Observable<ProfileViewModel> getProfileViewModel(@NonNull String username);
+    @NonNull
+    Observable<ProfileViewModel> call(@NonNull String username);
 }

@@ -10,7 +10,7 @@ public final class AndroidPreconditions {
 
     private AndroidPreconditions() {
         //no instance
-        throw new AssertionError("No instances allowed");
+        throw new AssertionError("No instances allowed.");
     }
 
     public static void checkOnMainThread() {

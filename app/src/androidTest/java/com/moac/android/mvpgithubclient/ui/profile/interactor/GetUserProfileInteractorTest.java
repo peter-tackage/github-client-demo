@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
  */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
-public class UserModelInteractorImplTest extends PatchedDexmakerTestCase {
+public class GetUserProfileInteractorTest extends PatchedDexmakerTestCase {
 
     @Test
     public void testObservedOnMainThread_WhenNoSchedulerProvided() throws Exception {
@@ -36,9 +36,9 @@ public class UserModelInteractorImplTest extends PatchedDexmakerTestCase {
         when(userProvider.getUser(any(String.class))).thenReturn(Observable.<User>empty());
 
         // Observe via the AndroidScheduler's main thread
-        UserModelInteractorImpl userModelInteractor = new UserModelInteractorImpl(userProvider);
+        GetUserByNameInteractor userModelInteractor = new GetUserByNameInteractor(userProvider);
 
-        userModelInteractor.getProfileViewModel(any(String.class))
+        userModelInteractor.call(any(String.class))
                 .materialize() // Force observation through single path
                 .subscribe(new Action1<Notification<ProfileViewModel>>() {
                     @Override
