@@ -12,9 +12,5 @@ import java.util.List;
 @AutoValue
 @AutoGson(autoValueClass = AutoValue_UserSearchResult.class)
 public abstract class UserSearchResult extends SearchResult<User> {
-    public abstract int totalCount();
-
-    public abstract boolean incompleteResults();
-
-    public abstract List<User> items();
+    public abstract List<User> items(); // AutoValue seems to require this
 }
