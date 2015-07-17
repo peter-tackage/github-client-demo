@@ -6,7 +6,9 @@ import com.moac.android.mvpgithubclient.injection.component.PerActivity;
 import com.moac.android.mvpgithubclient.injection.module.BaseActivityModule;
 import com.moac.android.mvpgithubclient.injection.module.PresenterModule;
 import com.moac.android.mvpgithubclient.injection.module.ViewModule;
+import com.moac.android.mvpgithubclient.ui.search.presenter.SearchQueryPresenter;
 import com.moac.android.mvpgithubclient.ui.search.presenter.SearchResultPresenter;
+import com.moac.android.mvpgithubclient.ui.search.view.SearchQueryViewContract;
 import com.moac.android.mvpgithubclient.ui.search.view.SearchResultViewContract;
 
 import dagger.Component;
@@ -24,6 +26,10 @@ public interface SearchComponent extends BaseActivityComponent {
     SearchResultPresenter provideSearchResultPresenter();
 
     SearchResultViewContract provideSearchResultViewContract();
+
+    SearchQueryPresenter provideSearchQueryPresenter();
+
+    SearchQueryViewContract provideSearchQueryViewContract();
 
     void inject(SearchActivity profileActivity);
 

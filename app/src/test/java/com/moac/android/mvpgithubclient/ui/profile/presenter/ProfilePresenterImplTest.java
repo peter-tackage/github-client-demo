@@ -43,7 +43,7 @@ public class ProfilePresenterImplTest {
 
     @Before
     public void before() {
-        profilePresenter = new ProfilePresenterImpl(userModelInteractor);
+        profilePresenter = new ProfilePresenterImpl(getUserProfile);
         // Ignore Android specific Preconditions
         PowerMockito.mockStatic(AndroidPreconditions.class);
     }
@@ -56,7 +56,7 @@ public class ProfilePresenterImplTest {
     @Test
     public void testSetsViewContent_WhenInteractorReturnsContent() {
         ProfileViewModel profileViewModel = mock(ProfileViewModel.class);
-        when(userModelInteractor.getProfileViewModel(any(String.class)))
+        when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.just(profileViewModel));
 
         profilePresenter.onViewCreated(profileView);
@@ -69,7 +69,7 @@ public class ProfilePresenterImplTest {
         final String msg = "msg";
         Exception exception = mock(Exception.class);
         when(exception.getMessage()).thenReturn(msg);
-        when(userModelInteractor.getProfileViewModel(any(String.class)))
+        when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.<ProfileViewModel>error(exception));
 
         profilePresenter.onViewCreated(profileView);
@@ -79,7 +79,7 @@ public class ProfilePresenterImplTest {
 
     @Test
     public void testNothingSet_WhenNoDataReturned() {
-        when(userModelInteractor.getProfileViewModel(any(String.class)))
+        when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.<ProfileViewModel>never());
 
         profilePresenter.onViewCreated(profileView);
@@ -89,7 +89,7 @@ public class ProfilePresenterImplTest {
 
     @Test
     public void testNothingSet_WhenEmptyDataReturned() {
-        when(userModelInteractor.getProfileViewModel(any(String.class)))
+        when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.<ProfileViewModel>empty());
 
         profilePresenter.onViewCreated(profileView);

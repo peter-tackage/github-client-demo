@@ -3,8 +3,7 @@ package com.moac.android.mvpgithubclient.api;
 import com.moac.android.mvpgithubclient.api.model.Order;
 import com.moac.android.mvpgithubclient.api.model.Sort;
 import com.moac.android.mvpgithubclient.api.model.User;
-
-import java.util.List;
+import com.moac.android.mvpgithubclient.api.model.UserSearchResult;
 
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -24,8 +23,8 @@ public interface GithubApi {
      * Refer https://developer.github.com/v3/search/#search-users
      */
     @GET("/search/users")
-    Observable<List<User>> searchUsers(@Query("q") String query,
-                                       @Query("sort") Sort sortField,
-                                       @Query("order") Order order);
+    Observable<UserSearchResult> searchUsers(@Query("q") String query,
+                                             @Query("sort") Sort sortField,
+                                             @Query("order") Order order);
 
 }

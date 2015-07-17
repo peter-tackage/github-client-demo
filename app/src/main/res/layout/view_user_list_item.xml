@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="@dimen/spacing_16"
+              android:orientation="horizontal"
+              tools:context="com.moac.android.mvpgithubclient.ui.search.SearchActivity">
+
+    <ImageView
+        android:id="@+id/imageView_avatar"
+        android:layout_width="@dimen/spacing_48"
+        android:layout_height="@dimen/spacing_48"
+        android:layout_marginRight="@dimen/spacing_16"/>
+
+    <TextView
+        android:id="@+id/textView_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>

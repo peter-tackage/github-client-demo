@@ -5,6 +5,9 @@ import com.moac.android.mvpgithubclient.ui.profile.interactor.GetUserProfile;
 import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenter;
 import com.moac.android.mvpgithubclient.ui.profile.presenter.ProfilePresenterImpl;
 import com.moac.android.mvpgithubclient.ui.search.interactor.GetUsersBySearchInteractor;
+import com.moac.android.mvpgithubclient.ui.search.interactor.SearchQueryInteractor;
+import com.moac.android.mvpgithubclient.ui.search.presenter.SearchQueryPresenter;
+import com.moac.android.mvpgithubclient.ui.search.presenter.SearchQueryPresenterImpl;
 import com.moac.android.mvpgithubclient.ui.search.presenter.SearchResultPresenter;
 import com.moac.android.mvpgithubclient.ui.search.presenter.SearchResultPresenterImpl;
 
@@ -18,9 +21,19 @@ public class PresenterModule {
 
     @Provides
     @PerActivity
-    SearchResultPresenter provideSearchResultPresenter(GetUsersBySearchInteractor getUsersBySearch) {
-        return new SearchResultPresenterImpl(getUsersBySearch);
+    SearchResultPresenter provideSearchResultPresenter(GetUsersBySearchInteractor getUsersBySearch,
+                                                       SearchQueryInteractor searchQueryInteractor) {
+        return new SearchResultPresenterImpl(getUsersBySearch, searchQueryInteractor);
     }
+
+    // Search Query
+
+    @Provides
+    @PerActivity
+    SearchQueryPresenter provideSearchQueryPresenter(SearchQueryInteractor searchQueryInteractor) {
+        return new SearchQueryPresenterImpl(searchQueryInteractor);
+    }
+
 
     // Profile
 

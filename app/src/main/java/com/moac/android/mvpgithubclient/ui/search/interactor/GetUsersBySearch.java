@@ -2,9 +2,7 @@ package com.moac.android.mvpgithubclient.ui.search.interactor;
 
 import android.support.annotation.NonNull;
 
-import com.moac.android.mvpgithubclient.api.model.User;
-
-import java.util.List;
+import com.moac.android.mvpgithubclient.api.model.UserSearchResult;
 
 import rx.Observable;
 
@@ -15,5 +13,5 @@ import rx.Observable;
 public interface GetUsersBySearch {
 
     @NonNull
-    Observable<List<User>> call(@NonNull String searchTerm);
+    Observable<UserSearchResult> call(@NonNull String searchTerm);
 }

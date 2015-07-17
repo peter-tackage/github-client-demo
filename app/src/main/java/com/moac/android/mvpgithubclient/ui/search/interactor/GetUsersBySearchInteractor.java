@@ -2,11 +2,9 @@ package com.moac.android.mvpgithubclient.ui.search.interactor;
 
 import android.support.annotation.NonNull;
 
-import com.moac.android.mvpgithubclient.api.model.User;
+import com.moac.android.mvpgithubclient.api.model.UserSearchResult;
 import com.moac.android.mvpgithubclient.provider.SearchProvider;
 import com.moac.android.mvpgithubclient.util.Preconditions;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,7 +27,7 @@ public class GetUsersBySearchInteractor implements GetUsersBySearch {
 
     @NonNull
     @Override
-    public Observable<List<User>> call(@NonNull String query) {
+    public Observable<UserSearchResult> call(@NonNull String query) {
         Preconditions.checkNotNullOrEmpty(query, "Parameter 'query' cannot be null or empty");
         return searchProvider
                 .searchUsers(query)

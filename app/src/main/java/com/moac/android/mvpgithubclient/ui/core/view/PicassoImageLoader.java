@@ -3,6 +3,7 @@ package com.moac.android.mvpgithubclient.ui.core.view;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
+import com.moac.android.mvpgithubclient.ui.core.helper.CircleImageTransformation;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -26,5 +27,11 @@ public class PicassoImageLoader {
 
     public void load(@NonNull String path, @NonNull ImageView imageView) {
         picasso.load(path).into(imageView);
+    }
+
+    public void loadCircular(@NonNull String path, @NonNull ImageView imageView) {
+        picasso.load(path)
+                .transform(new CircleImageTransformation())
+                .into(imageView);
     }
 }

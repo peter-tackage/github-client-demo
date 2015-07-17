@@ -5,10 +5,8 @@ import android.support.annotation.NonNull;
 import com.moac.android.mvpgithubclient.api.GithubApi;
 import com.moac.android.mvpgithubclient.api.model.Order;
 import com.moac.android.mvpgithubclient.api.model.Sort;
-import com.moac.android.mvpgithubclient.api.model.User;
+import com.moac.android.mvpgithubclient.api.model.UserSearchResult;
 import com.moac.android.mvpgithubclient.util.Preconditions;
-
-import java.util.List;
 
 import rx.Observable;
 
@@ -24,7 +22,7 @@ public class SearchProvider {
     }
 
     @NonNull
-    public Observable<List<User>> searchUsers(@NonNull String query) {
+    public Observable<UserSearchResult> searchUsers(@NonNull String query) {
         Preconditions.checkNotNullOrEmpty(query, "Parameter 'query' cannot be null or empty.");
         return githubApi.searchUsers(query, Sort.FOLLOWERS, Order.DESCENDING);
     }
