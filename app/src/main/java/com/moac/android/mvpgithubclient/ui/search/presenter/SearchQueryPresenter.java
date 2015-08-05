@@ -11,7 +11,7 @@ import com.moac.android.mvpgithubclient.ui.search.view.SearchResultViewContract;
  */
 public interface SearchQueryPresenter {
 
-    void onViewCreated(@NonNull SearchQueryViewContract searchQueryViewContract);
+    void bindView(@NonNull SearchQueryViewContract searchQueryViewContract);
 
-    void onViewDestroyed();
+    void unbindView();
 }

@@ -12,5 +12,5 @@ import java.util.List;
 @AutoValue
 @AutoGson(autoValueClass = AutoValue_UserSearchResult.class)
 public abstract class UserSearchResult extends SearchResult<User> {
-    public abstract List<User> items(); // AutoValue seems to require this
+    public abstract List<User> items(); // AutoValue requires the generic parameter value
 }

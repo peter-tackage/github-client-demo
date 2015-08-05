@@ -12,7 +12,7 @@ import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
  */
 public interface ProfilePresenter {
 
-    void onViewCreated(@NonNull ProfileViewContract profileView);
+    void bindView(@NonNull ProfileViewContract profileView);
 
-    void onViewDestroyed();
+    void unbindView();
 }

@@ -10,7 +10,7 @@ import com.moac.android.mvpgithubclient.ui.search.view.SearchResultViewContract;
  */
 public interface SearchResultPresenter {
 
-    void onViewCreated(@NonNull SearchResultViewContract searchResultViewContract);
+    void bindView(@NonNull SearchResultViewContract searchResultViewContract);
 
-    void onViewDestroyed();
+    void unbindView();
 }

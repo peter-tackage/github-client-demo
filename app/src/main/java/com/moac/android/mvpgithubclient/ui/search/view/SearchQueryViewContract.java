@@ -2,7 +2,6 @@ package com.moac.android.mvpgithubclient.ui.search.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.SearchView;
-import android.view.View;
 
 import rx.Observable;
 

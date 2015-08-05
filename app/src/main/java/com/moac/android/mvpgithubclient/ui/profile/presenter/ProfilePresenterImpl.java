@@ -27,7 +27,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     }
 
     @Override
-    public void onViewCreated(@NonNull final ProfileViewContract profileView) {
+    public void bindView(@NonNull final ProfileViewContract profileView) {
         userSubscription = getUserProfile.call("peter-tackage")
                 .subscribe(new ContentObserver<ProfileViewModel>() {
                     @Override
@@ -46,7 +46,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     }
 
     @Override
-    public void onViewDestroyed() {
+    public void unbindView() {
         userSubscription.unsubscribe();
     }
 }

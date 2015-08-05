@@ -67,4 +67,5 @@ public class UserModelInteractorImplTest {
         verify(userViewModelMapper).call(user);
     }
 
+    // TODO This needs to check using TestSubscriber
 }

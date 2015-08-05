@@ -18,6 +18,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import rx.Observable;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -54,12 +55,19 @@ public class ProfilePresenterImplTest {
     }
 
     @Test
+    public void test_checkPreconditions() {
+        assertThat(getUserProfile).isNotNull();
+        assertThat(profileView).isNotNull();
+        assertThat(profilePresenter).isNotNull();
+    }
+
+    @Test
     public void testSetsViewContent_WhenInteractorReturnsContent() {
         ProfileViewModel profileViewModel = mock(ProfileViewModel.class);
         when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.just(profileViewModel));
 
-        profilePresenter.onViewCreated(profileView);
+        profilePresenter.bindView(profileView);
 
         verify(profileView).showContent(profileViewModel);
     }
@@ -72,7 +80,7 @@ public class ProfilePresenterImplTest {
         when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.<ProfileViewModel>error(exception));
 
-        profilePresenter.onViewCreated(profileView);
+        profilePresenter.bindView(profileView);
 
         verify(profileView).showError(msg);
     }
@@ -82,7 +90,7 @@ public class ProfilePresenterImplTest {
         when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.<ProfileViewModel>never());
 
-        profilePresenter.onViewCreated(profileView);
+        profilePresenter.bindView(profileView);
 
         verifyZeroInteractions(profileView);
     }
@@ -92,7 +100,7 @@ public class ProfilePresenterImplTest {
         when(getUserProfile.call(any(String.class)))
                 .thenReturn(Observable.<ProfileViewModel>empty());
 
-        profilePresenter.onViewCreated(profileView);
+        profilePresenter.bindView(profileView);
 
         verifyZeroInteractions(profileView);
     }

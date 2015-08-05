@@ -22,7 +22,7 @@ public class SearchQueryPresenterImpl implements SearchQueryPresenter {
     }
 
     @Override
-    public void onViewCreated(@NonNull SearchQueryViewContract searchQueryViewContract) {
+    public void bindView(@NonNull SearchQueryViewContract searchQueryViewContract) {
         subscription = searchQueryViewContract.getSearchQuery()
                 .subscribe(new Action1<String>() {
                     @Override
@@ -33,7 +33,7 @@ public class SearchQueryPresenterImpl implements SearchQueryPresenter {
     }
 
     @Override
-    public void onViewDestroyed() {
+    public void unbindView() {
         subscription.unsubscribe();
     }
 }

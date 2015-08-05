@@ -6,6 +6,8 @@ import java.util.List;
  * @author Peter Tackage
  * @since 17/07/15
  *
+ * Search results contain a homogeneous set of items whose type depends on the nature of the query.
+ *
  * AutoValue doesn't play well with generics as it needs to know the type at compile time.
  * This abstract class should be subclassed by those actual models that provide the concrete
  * type information.

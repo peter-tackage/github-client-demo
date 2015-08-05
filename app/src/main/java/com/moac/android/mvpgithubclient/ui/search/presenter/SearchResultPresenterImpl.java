@@ -11,6 +11,7 @@ import com.moac.android.mvpgithubclient.ui.search.view.SearchResultViewContract;
 import com.moac.android.mvpgithubclient.util.TextUtils;
 
 import rx.Subscription;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 import static com.moac.android.mvpgithubclient.util.RxUtils.unsubscribe;
@@ -33,7 +34,7 @@ public class SearchResultPresenterImpl implements SearchResultPresenter {
     }
 
     @Override
-    public void onViewCreated(@NonNull SearchResultViewContract searchResultViewContract) {
+    public void bindView(@NonNull SearchResultViewContract searchResultViewContract) {
         this.searchResultViewContract = searchResultViewContract;
         subscription = searchQueryInteractor.getSearchQuery().subscribe(new Action1<String>() {
             @Override
@@ -44,7 +45,7 @@ public class SearchResultPresenterImpl implements SearchResultPresenter {
     }
 
     @Override
-    public void onViewDestroyed() {
+    public void unbindView() {
         unsubscribe(subscription);
         this.searchResultViewContract = null;
     }
@@ -54,6 +55,12 @@ public class SearchResultPresenterImpl implements SearchResultPresenter {
         if (TextUtils.isNullOrEmpty(query)) return;
 
         subscription = getUsersBySearch.call(query)
+                .doOnSubscribe(new Action0() {
+                    @Override
+                    public void call() {
+                        searchResultViewContract.showLoading();
+                    }
+                })
                 .subscribe(new ContentObserver<UserSearchResult>() {
 
                     @Override

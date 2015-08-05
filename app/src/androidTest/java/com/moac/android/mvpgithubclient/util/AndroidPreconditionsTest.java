@@ -1,7 +1,6 @@
 package com.moac.android.mvpgithubclient.util;
 
 import android.os.Handler;
-import android.os.Looper;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.SmallTest;
 
@@ -10,6 +9,8 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Peter Tackage
@@ -41,6 +42,8 @@ public class AndroidPreconditionsTest {
 
         // Give it 5 seconds to countdown or throw
         countDownLatch.await(5, TimeUnit.SECONDS);
+
+        assertThat(countDownLatch.getCount()).isZero();
     }
 
     @Test
@@ -48,7 +51,7 @@ public class AndroidPreconditionsTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         // Post to main looper
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        new Handler(AndroidUtils.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
                 AndroidPreconditions.checkOnMainThread();
@@ -59,8 +62,10 @@ public class AndroidPreconditionsTest {
         // Give it 5 seconds to countdown or throw
         countDownLatch.await(5, TimeUnit.SECONDS);
 
+        assertThat(countDownLatch.getCount()).isZero();
+
         /**
-         * This could have been performed using -
+         * This could have also been performed using -
          *
          *  InstrumentationRegistry.getInstrumentation().runOnMainSync(
          *      new Runnable() { public void run() { AndroidPreconditions.checkOnMainThread(); } });

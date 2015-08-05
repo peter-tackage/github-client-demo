@@ -1,7 +1,5 @@
 package com.moac.android.mvpgithubclient.ui.search;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -55,7 +53,7 @@ public class SearchActivity extends BaseActivity<SearchComponent> {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         searchQueryView.setSearchView(searchView);
-        searchQueryPresenter.onViewCreated(searchQueryView);
+        searchQueryPresenter.bindView(searchQueryView);
 
         return true;
     }
@@ -73,17 +71,17 @@ public class SearchActivity extends BaseActivity<SearchComponent> {
     private void setContent() {
         setContentView(R.layout.activity_search);
         searchResultView.setContentView(findViewById(getActivityRootViewId()));
-        searchResultPresenter.onViewCreated(searchResultView);
+        searchResultPresenter.bindView(searchResultView);
     }
 
     private void destroySearchQuery() {
-        searchQueryPresenter.onViewDestroyed();
+        searchQueryPresenter.unbindView();
         searchQueryView = null;
         searchQueryView = null;
     }
 
     private void destroySearchResult() {
-        searchResultPresenter.onViewDestroyed();
+        searchResultPresenter.unbindView();
         searchResultPresenter = null;
         searchResultView = null;
     }

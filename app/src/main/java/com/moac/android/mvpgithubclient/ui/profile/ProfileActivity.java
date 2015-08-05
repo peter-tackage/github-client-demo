@@ -31,7 +31,7 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        profilePresenter.onViewDestroyed();
+        profilePresenter.unbindView();
     }
 
     @Override
@@ -47,6 +47,6 @@ public class ProfileActivity extends BaseActivity<ProfileComponent> {
     private void setContent() {
         setContentView(R.layout.activity_profile);
         profileViewContract.setContentView(findViewById(getActivityRootViewId()));
-        profilePresenter.onViewCreated(profileViewContract);
+        profilePresenter.bindView(profileViewContract);
     }
 }

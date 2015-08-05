@@ -1,6 +1,6 @@
 package com.moac.android.mvpgithubclient.util;
 
-import android.os.Looper;
+import static com.moac.android.mvpgithubclient.util.AndroidUtils.getMainThread;
 
 /**
  * @author Peter Tackage
@@ -14,8 +14,9 @@ public final class AndroidPreconditions {
     }
 
     public static void checkOnMainThread() {
-        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+        if (Thread.currentThread() != getMainThread()) {
             throw new IllegalStateException("This method must be called from the Android main thread, not: " + Thread.currentThread());
         }
     }
+
 }
