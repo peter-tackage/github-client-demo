@@ -1,6 +1,6 @@
 package com.moac.android.mvpgithubclient.util;
 
-import static com.moac.android.mvpgithubclient.util.AndroidUtils.getMainThread;
+import static com.moac.android.mvpgithubclient.util.AndroidUtils.getAndroidMainThread;
 
 /**
  * @author Peter Tackage
@@ -14,7 +14,7 @@ public final class AndroidPreconditions {
     }
 
     public static void checkOnMainThread() {
-        if (Thread.currentThread() != getMainThread()) {
+        if (Thread.currentThread() != getAndroidMainThread()) {
             throw new IllegalStateException("This method must be called from the Android main thread, not: " + Thread.currentThread());
         }
     }

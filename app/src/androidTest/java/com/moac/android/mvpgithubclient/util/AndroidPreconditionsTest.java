@@ -51,7 +51,7 @@ public class AndroidPreconditionsTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         // Post to main looper
-        new Handler(AndroidUtils.getMainLooper()).post(new Runnable() {
+        new Handler(AndroidUtils.getAndroidMainLooper()).post(new Runnable() {
             @Override
             public void run() {
                 AndroidPreconditions.checkOnMainThread();
@@ -59,6 +59,7 @@ public class AndroidPreconditionsTest {
                 countDownLatch.countDown();
             }
         });
+
         // Give it 5 seconds to countdown or throw
         countDownLatch.await(5, TimeUnit.SECONDS);
 

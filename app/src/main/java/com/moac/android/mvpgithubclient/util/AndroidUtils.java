@@ -13,11 +13,11 @@ public final class AndroidUtils {
         throw new AssertionError("No instances allowed.");
     }
 
-    public static Looper getMainLooper() {
+    public static Looper getAndroidMainLooper() {
         return Looper.getMainLooper();
     }
 
-    public static Thread getMainThread() {
-        return getMainLooper().getThread();
+    public static Thread getAndroidMainThread() {
+        return getAndroidMainLooper().getThread();
     }
 }

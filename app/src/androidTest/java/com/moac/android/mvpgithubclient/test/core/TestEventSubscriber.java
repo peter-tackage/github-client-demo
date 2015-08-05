@@ -48,7 +48,7 @@ public class TestEventSubscriber<T> extends TestSubscriber<T> {
     }
 
     public void assertObservedOnAndroidMainThread() {
-        if(!getLastSeenThread().equals(AndroidUtils.getMainThread())) {
+        if(!getLastSeenThread().equals(AndroidUtils.getAndroidMainThread())) {
             throw new AssertionError("Not Observed on Android Main Thread.");
         }
     }

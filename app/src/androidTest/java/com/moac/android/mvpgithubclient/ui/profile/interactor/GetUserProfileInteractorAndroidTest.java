@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
  */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
-public class GetUserProfileInteractorTest extends PatchedDexmakerTestCase {
+public class GetUserProfileInteractorAndroidTest extends PatchedDexmakerTestCase {
 
     @Test
     public void testObservedOnMainThread_WhenNoSchedulerProvided() throws Exception {
