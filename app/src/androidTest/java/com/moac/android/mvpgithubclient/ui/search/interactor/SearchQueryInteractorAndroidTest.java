@@ -9,6 +9,10 @@ import com.moac.android.mvpgithubclient.test.core.TestEventSubscriber;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.TimeUnit;
+
+import static com.moac.android.mvpgithubclient.test.asserts.Assertions.assertThat;
+
 /**
  * @author Peter Tackage
  * @since 13/07/15
@@ -22,15 +26,15 @@ public class SearchQueryInteractorAndroidTest extends PatchedDexmakerTestCase {
     @Test
     public void testObservedOnMainThread_WhenNoSchedulerProvided() throws Exception {
 
-        // Observe via the AndroidScheduler's main thread
         SearchQueryInteractor searchQueryInteractor = new SearchQueryInteractorImpl();
 
+        // Use default value to produce event; search query Observable never completes.
         TestEventSubscriber<String> subscriber = new TestEventSubscriber<>();
         searchQueryInteractor.getSearchQuery().subscribe(subscriber);
 
-        subscriber.awaitEvents();
+        subscriber.awaitOnNextEvents(5, TimeUnit.SECONDS);
 
-        subscriber.assertObservedOnAndroidMainThread();
+        assertThat(subscriber).wasObservedOnAndroidMainThread();
 
     }
 }

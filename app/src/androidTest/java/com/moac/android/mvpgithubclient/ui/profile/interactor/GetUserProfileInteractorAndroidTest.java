@@ -12,8 +12,11 @@ import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.TimeUnit;
+
 import rx.Observable;
 
+import static com.moac.android.mvpgithubclient.test.asserts.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -31,16 +34,19 @@ public class GetUserProfileInteractorAndroidTest extends PatchedDexmakerTestCase
     @Test
     public void testObservedOnMainThread_WhenNoSchedulerProvided() throws Exception {
 
+        // Empty Observable, as we are only testing the observation thread.
         UserProvider userProvider = mock(UserProvider.class);
         when(userProvider.getUser(any(String.class))).thenReturn(Observable.<User>empty());
 
-        // Observe via the AndroidScheduler's main thread
+        // Default constructor should create Observable that is observed on AndroidScheduler's main thread
         GetUserByNameInteractor userModelInteractor = new GetUserByNameInteractor(userProvider);
 
         TestEventSubscriber<ProfileViewModel> subscriber = new TestEventSubscriber<>();
         userModelInteractor.call(any(String.class)).subscribe(subscriber);
 
-        subscriber.assertObservedOnAndroidMainThread();
+        subscriber.awaitTerminalEvent(5, TimeUnit.SECONDS);
+
+        assertThat(subscriber).wasObservedOnAndroidMainThread();
 
     }
 }

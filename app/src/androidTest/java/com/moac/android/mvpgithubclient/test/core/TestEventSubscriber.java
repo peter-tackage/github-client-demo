@@ -1,7 +1,5 @@
 package com.moac.android.mvpgithubclient.test.core;
 
-import com.moac.android.mvpgithubclient.util.AndroidUtils;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -10,15 +8,16 @@ import rx.observers.TestSubscriber;
 /**
  * @author Peter Tackage
  * @since 05/08/15
- *
+ * <p/>
  * Used to test Observers that do not have terminating streams, such as those derived from BehaviorSubjects.
  */
 public class TestEventSubscriber<T> extends TestSubscriber<T> {
 
-    private final CountDownLatch eventLatch;
+    private final CountDownLatch onNextEventLatch;
 
     public TestEventSubscriber(int eventCount) {
-        this.eventLatch = new CountDownLatch(eventCount);
+        super();
+        this.onNextEventLatch = new CountDownLatch(eventCount);
     }
 
     public TestEventSubscriber() {
@@ -28,28 +27,22 @@ public class TestEventSubscriber<T> extends TestSubscriber<T> {
     @Override
     public void onNext(T t) {
         super.onNext(t);
-        eventLatch.countDown();
+        onNextEventLatch.countDown();
     }
 
-    public void awaitEvents() {
+    public void awaitOnNextEvents() {
         try {
-            eventLatch.await();
+            onNextEventLatch.await();
         } catch (InterruptedException e) {
             throw new RuntimeException("Interrupted", e);
         }
     }
 
-    public void awaitEvents(long timeout, TimeUnit unit) {
+    public void awaitOnNextEvents(long timeout, TimeUnit unit) {
         try {
-            eventLatch.await(timeout, unit);
+            onNextEventLatch.await(timeout, unit);
         } catch (InterruptedException e) {
             throw new RuntimeException("Interrupted", e);
-        }
-    }
-
-    public void assertObservedOnAndroidMainThread() {
-        if(getLastSeenThread() != (AndroidUtils.getAndroidMainThread())) {
-            throw new AssertionError("Not Observed on Android Main Thread.");
         }
     }
 
