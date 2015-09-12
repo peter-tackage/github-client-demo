@@ -47,21 +47,23 @@ Interactor dependencies can be mocked/stubbed and injected.
 View tests will typically be Android Instrumentation tests, as they will have real Android dependencies,
 such as the View hierarchy.
 
-Interactor tests, these are a mixture between Android Instrumentation tests and Unit Tests.
+Interactor tests, these are unfortunately a mixture between Unit Tests and Android Instrumentation tests.
+ The latter is only required to test that result is delivered on the Android main thread. I'm still
+ searching for a good way to test this without having an Android dependency.
+
+ Additionally, to check for correct threading, the Presenter also checks that the Interactor delivers
+ values on the Android main thread. This is another Android dependency that I would like to abstract,
+ although the check is useful.
 
 AssertJ is used for test verification points. It has a nice fluent API, although that mostly goes unused in this simple app.
 
+TODO Some of the test classes (the asserts) might be better in a standalone Java module.
+TODO The fluent asserts for RxJava Observables is worthy of its own project.
 TODO Espresso
 
 ##About Thread Boundaries
 In the current implementation the Presenter and the View operate entirely on the main thread.
 The Interactor is responsible for supplying data to the Presenter on the main Android thread.
-
-This may require some rework, as it pushes Android dependencies into the Interactor, hence ```UserModelInteractorImpl```
- has two constructors to providing explicit Scheduling control for testing purposes. This is not ideal,
- as I would prefer only the View implementations to have Android dependencies.
-
-I imagine that the optimal solution will be found once the app becomes more complex.
 
 ##List of references
 In no particular order, here's some of the pages I referred to when building this.

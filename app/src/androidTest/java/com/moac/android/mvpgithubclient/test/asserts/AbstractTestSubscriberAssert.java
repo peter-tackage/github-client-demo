@@ -22,7 +22,7 @@ public abstract class AbstractTestSubscriberAssert<T, S extends AbstractTestSubs
 
     public S hasOnNextEventCount(int expectedSize) {
         Iterables.instance().assertHasSize(info, actual.getOnNextEvents(), expectedSize);
-        return myself;In
+        return myself;
     }
 
     // TODO Make these use the TestSubscriber assertions somehow - don't repeat their logic.
