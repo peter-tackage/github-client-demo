@@ -7,10 +7,6 @@ import timber.log.Timber;
 
 import static com.moac.android.mvpgithubclient.util.AndroidPreconditions.checkOnMainThread;
 
-/**
- * @author Peter Tackage
- * @since 08/07/15
- */
 public class ContentObserver<T> implements Observer<T> {
 
     @Override

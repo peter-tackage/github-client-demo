@@ -42,51 +42,33 @@ public class ProfileViewImplTest extends PatchedDexmakerTestCase {
     }
 
     @Test
-    public void testNothing() {
-    }
-
-    /**
-     * Defines the layout used by View implementation.
-     */
-    private View getView() {
-        return View.inflate(getTargetContext(), R.layout.activity_profile, null);
-    }
-
-    @Test
     public void test_checkPreconditions() {
         assertThat(picassoImageLoader).isNotNull();
         assertThat(errorRenderer).isNotNull();
     }
 
-    @Test
+    @Test(expected = IllegalStateException.class)
     public void testThrowsOnShowContent_WhenContentViewNotSet() {
-        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader, errorRenderer);
-        try {
-            profileView.showContent(mock(ProfileViewModel.class));
-            fail("IllegalStateException should have been thrown as content view was not set");
-        } catch (IllegalStateException ise) { // expected
-        }
-
+        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader,
+                errorRenderer);
+        profileView.showContent(mock(ProfileViewModel.class));
+        fail("IllegalStateException should have been thrown as content view was not set");
     }
 
-    @Test
+    @Test(expected = IllegalStateException.class)
     public void testThrowsOnShowError_WhenContentViewNotSet() {
-        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader, errorRenderer);
-        try {
-            profileView.showError("dummy");
-            fail("IllegalStateException should have been thrown as content view was not set");
-        } catch (IllegalStateException ise) { // expected
-        }
+        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader,
+                errorRenderer);
+        profileView.showError("dummy");
+        fail("IllegalStateException should have been thrown as content view was not set");
     }
 
-    @Test
+    @Test(expected = IllegalStateException.class)
     public void testThrowsOnShowLoading_WhenContentViewNotSet() {
-        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader, errorRenderer);
-        try {
-            profileView.showLoading();
-            fail("IllegalStateException should have been thrown as content view was not set");
-        } catch (IllegalStateException ise) { // expected
-        }
+        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader,
+                errorRenderer);
+        profileView.showLoading();
+        fail("IllegalStateException should have been thrown as content view was not set");
     }
 
     @Test
@@ -95,7 +77,8 @@ public class ProfileViewImplTest extends PatchedDexmakerTestCase {
 
         // Inflate the view to allow binding of fields
         final View view = getView();
-        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader, errorRenderer);
+        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader,
+                errorRenderer);
 
         // Set content view
         profileView.setContentView(view);
@@ -109,7 +92,8 @@ public class ProfileViewImplTest extends PatchedDexmakerTestCase {
     @Test
     public void testShowContentDoesNotThrow_WhenContentViewSet() {
         final ProfileViewModel profileViewModel = mock(ProfileViewModel.class);
-        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader, errorRenderer);
+        ProfileViewContractImpl profileView = new ProfileViewContractImpl(picassoImageLoader,
+                errorRenderer);
 
         // Set content view
         profileView.setContentView(getView());
@@ -117,4 +101,12 @@ public class ProfileViewImplTest extends PatchedDexmakerTestCase {
         // Invoke showContent
         profileView.showContent(profileViewModel);
     }
+
+    /**
+     * Defines the layout used by View implementation.
+     */
+    private View getView() {
+        return View.inflate(getTargetContext(), R.layout.activity_profile, null);
+    }
+
 }

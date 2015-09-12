@@ -2,43 +2,26 @@ package com.moac.android.mvpgithubclient.ui.search.interactor;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.moac.android.mvpgithubclient.api.model.User;
-import com.moac.android.mvpgithubclient.provider.SearchProvider;
-import com.moac.android.mvpgithubclient.ui.profile.interactor.GetUserByNameInteractor;
-import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
+import com.moac.android.mvpgithubclient.scheduler.SchedulerProvider;
+import com.moac.android.mvpgithubclient.test.TestSchedulerProvider;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.List;
-
-import rx.Observable;
 import rx.observers.TestSubscriber;
-import rx.schedulers.Schedulers;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.when;
 
-/**
- * @author Peter Tackage
- * @since 06/07/15
- */
 @SmallTest
-@RunWith(MockitoJUnitRunner.class)
 public class SearchQueryInteractorImplTest {
 
     private SearchQueryInteractor searchQueryInteractor;
 
     @Before
-    public void before() {
-        searchQueryInteractor = new SearchQueryInteractorImpl(Schedulers.immediate());
+    public void setUp() {
+        SchedulerProvider schedulerProvider = new TestSchedulerProvider.Builder().create();
+        searchQueryInteractor = new SearchQueryInteractorImpl(schedulerProvider);
     }
 
     @After
@@ -67,7 +50,6 @@ public class SearchQueryInteractorImplTest {
     public void testSearchQueryChangesFromDefault_WhenSet() {
 
         final String query = "dummy";
-
         TestSubscriber<String> subscriber = new TestSubscriber<>();
 
         searchQueryInteractor.getSearchQuery().subscribe(subscriber);
@@ -83,7 +65,6 @@ public class SearchQueryInteractorImplTest {
 
         final String query = "dummy";
         final String query2 = "dummy2";
-
         TestSubscriber<String> subscriber = new TestSubscriber<>();
 
         searchQueryInteractor.getSearchQuery().subscribe(subscriber);

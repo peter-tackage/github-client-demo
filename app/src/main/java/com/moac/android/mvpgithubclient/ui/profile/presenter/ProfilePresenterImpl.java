@@ -11,10 +11,6 @@ import rx.Subscription;
 
 import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
 
-/**
- * @author Peter Tackage
- * @since 07/07/15
- */
 public class ProfilePresenterImpl implements ProfilePresenter {
 
     @NonNull private final GetUserProfile getUserProfile;
@@ -22,12 +18,15 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     private Subscription userSubscription;
 
     public ProfilePresenterImpl(@NonNull GetUserProfile getUserProfile) {
-        checkNotNull(getUserProfile, "Parameter userModelInteractor cannot be null.");
+        checkNotNull(getUserProfile, "Parameter getUserProfile cannot be null.");
+
         this.getUserProfile = getUserProfile;
     }
 
     @Override
     public void bindView(@NonNull final ProfileViewContract profileView) {
+        checkNotNull(profileView, "Parameter profileView cannot be null.");
+
         userSubscription = getUserProfile.call("peter-tackage")
                 .subscribe(new ContentObserver<ProfileViewModel>() {
                     @Override

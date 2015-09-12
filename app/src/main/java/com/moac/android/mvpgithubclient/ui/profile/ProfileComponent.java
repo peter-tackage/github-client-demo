@@ -12,11 +12,6 @@ import com.moac.android.mvpgithubclient.ui.profile.view.ProfileViewContract;
 
 import dagger.Component;
 
-/**
- * @author Peter Tackage
- * @since 16/04/15
- */
-
 @PerActivity
 @Component(dependencies = GithubClientApplicationComponent.class,
         modules = {BaseActivityModule.class, PresenterModule.class, ViewModule.class})

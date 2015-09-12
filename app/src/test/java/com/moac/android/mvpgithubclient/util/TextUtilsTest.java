@@ -6,10 +6,6 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author Peter Tackage
- * @since 06/07/15
- */
 @SmallTest
 public class TextUtilsTest {
 

@@ -4,14 +4,8 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import org.junit.Test;
 
-import java.lang.String;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author Peter Tackage
- * @since 06/07/15
- */
 @SmallTest
 public class ProfileViewModelTest {
 

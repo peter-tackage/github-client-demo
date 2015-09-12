@@ -1,51 +1,47 @@
 package com.moac.android.mvpgithubclient.ui.profile.interactor;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
 
+import com.moac.android.mvpgithubclient.api.model.User;
 import com.moac.android.mvpgithubclient.provider.UserProvider;
+import com.moac.android.mvpgithubclient.scheduler.SchedulerProvider;
 import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
-import com.moac.android.mvpgithubclient.ui.profile.model.UserViewModelMapper;
 
 import rx.Observable;
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 
 import static com.moac.android.mvpgithubclient.util.Preconditions.checkNotNull;
 
-/**
- * @author Peter Tackage
- * @since 13/07/15
- */
 public class GetUserByNameInteractor implements GetUserProfile {
 
     @NonNull private final UserProvider userProvider;
-    @NonNull private final UserViewModelMapper userViewModelMapper;
-    @NonNull private final Scheduler observeOn;
+    @NonNull private final SchedulerProvider schedulerProvider;
 
-    public GetUserByNameInteractor(@NonNull UserProvider userProvider) {
-        this(userProvider, new UserViewModelMapper(), AndroidSchedulers.mainThread());
-    }
-
-    @VisibleForTesting
-    GetUserByNameInteractor(@NonNull UserProvider userProvider,
-                            @NonNull UserViewModelMapper userViewModelMapper,
-                            @NonNull Scheduler observeOn) {
+    public GetUserByNameInteractor(@NonNull UserProvider userProvider,
+                                   @NonNull SchedulerProvider schedulerProvider) {
 
         checkNotNull(userProvider, "Parameter userModelInteractor cannot be null.");
-        checkNotNull(userViewModelMapper, "Parameter userViewModelMapper cannot be null.");
-        checkNotNull(observeOn, "Parameter observeOn cannot be null.");
+        checkNotNull(schedulerProvider, "Parameter schedulerProvider cannot be null.");
 
         this.userProvider = userProvider;
-        this.userViewModelMapper = userViewModelMapper;
-        this.observeOn = observeOn;
+        this.schedulerProvider = schedulerProvider;
     }
 
     @Override
     @NonNull
     public Observable<ProfileViewModel> call(@NonNull String username) {
+        checkNotNull(schedulerProvider, "Parameter username cannot be null.");
+
         return userProvider.getUser(username)
-                .map(userViewModelMapper)
-                .observeOn(observeOn);
+                .map(new UserViewModelMapper())
+                .observeOn(schedulerProvider.ui());
+    }
+
+    static class UserViewModelMapper implements Func1<User, ProfileViewModel> {
+
+        @Override
+        public ProfileViewModel call(User user) {
+            return ProfileViewModel.from(user.avatarUrl(), user.login(), user.name(), user.location());
+        }
     }
 }

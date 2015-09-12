@@ -1,8 +1,9 @@
-package com.moac.android.mvpgithubclient.ui.profile.model;
+package com.moac.android.mvpgithubclient.ui.profile.interactor;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.moac.android.mvpgithubclient.api.model.User;
+import com.moac.android.mvpgithubclient.ui.profile.model.ProfileViewModel;
 
 import org.junit.Test;
 
@@ -10,10 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-/**
- * @author Peter Tackage
- * @since 06/07/15
- */
 @SmallTest
 public class UserViewModelMapperTest {
 
@@ -25,12 +22,13 @@ public class UserViewModelMapperTest {
     @Test
     public void testModelValueAssigned_WhenCreatedUsingFactory() {
 
+        // TODO Should use a builder
         User mockUser = mock(User.class);
         when(mockUser.avatarUrl()).thenReturn(AVATAR_URL);
         when(mockUser.login()).thenReturn(LOGIN);
         when(mockUser.name()).thenReturn(NAME);
         when(mockUser.location()).thenReturn(LOCATION);
-        UserViewModelMapper modelMapper = new UserViewModelMapper();
+        GetUserByNameInteractor.UserViewModelMapper modelMapper = new GetUserByNameInteractor.UserViewModelMapper();
 
         ProfileViewModel profileViewModel = modelMapper.call(mockUser);
 

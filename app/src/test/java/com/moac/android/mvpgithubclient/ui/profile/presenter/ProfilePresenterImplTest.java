@@ -25,13 +25,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.powermock.api.mockito.PowerMockito.when;
 
-/**
- * @author Peter Tackage
- * @since 06/07/15
- */
 @SmallTest
-@RunWith(PowerMockRunner.class)
 @PrepareForTest(AndroidPreconditions.class)
+@RunWith(PowerMockRunner.class)
 public class ProfilePresenterImplTest {
 
     @Mock

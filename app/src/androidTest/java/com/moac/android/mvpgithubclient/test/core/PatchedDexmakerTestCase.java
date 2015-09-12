@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.annotation.CallSuper;
 import android.support.test.InstrumentationRegistry;
 
-import org.junit.Before;
-
 /**
  * @author Peter Tackage
  * @since 13/07/15

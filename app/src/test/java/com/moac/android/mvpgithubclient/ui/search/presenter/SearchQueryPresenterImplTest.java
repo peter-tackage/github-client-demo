@@ -45,7 +45,7 @@ public class SearchQueryPresenterImplTest {
     private SearchQueryPresenter searchQueryPresenter;
 
     @Before
-    public void before() {
+    public void setUp() {
         searchQueryPresenter = new SearchQueryPresenterImpl(searchQueryInteractor);
         // Ignore Android specific Preconditions
         PowerMockito.mockStatic(AndroidPreconditions.class);
